@@ -1,0 +1,2 @@
+Hello, this is a new file!
+You can write more content here.

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>3D Rubik Cube Model</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -1250px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            
+            font-size: 15px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            width: 400px;
+            height: 400px;
+            margin-left: 400px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .wide-section1 {
+            margin-left: -850px;
+            width: 900px;
+            height: 240px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 530px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(63, 253, 10, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(63, 253, 10, 0.317);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; 
+    margin-left: 780px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+.sectionfont{
+    font-size: 1.3em;
+}
+@media (min-width:385px) and (max-width: 768px) {
+    body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+    @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -360px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+            
+            font-size: 13px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            width: 400px;
+            height: 400px;
+            margin-left: 175px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .sectionfont{
+            font-size: 1.20em;
+        }
+        .wide-section1 {
+            margin-left: -585px;
+            width: 370px;
+            height: 360px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 530px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(63, 253, 10, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(63, 253, 10, 0.317);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #f5efef; 
+    margin-left: 250px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+
+}
+@media(max-width: 386px) {
+    body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+    @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -360px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+            
+            font-size: 13px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            right: 0px;
+            width: 400px;
+            height: 400px;
+            margin-left: 175px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .sectionfont{
+            font-size: 1.20em;
+        }
+        .wide-section1 {
+            margin-left: -585px;
+            width: 370px;
+            height: 360px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 530px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(63, 253, 10, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(63, 253, 10, 0.317);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #f5efef; 
+    margin-left: 250px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+}
+
+
+
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-bar">
+        <a href="#" onclick="redirectToWelcomePage1()"><u>Home</u></a>
+        <a href="#" onclick="redirectToWelcomePage2()"><u>About Us</u></a>
+        <a href="#" onclick="redirectToWelcomePage3()"><u>Connect With Us</u></a>
+    </div>
+    
+    <div id="container">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wide-section1  class_interactive creative-headline" >
+        <p class="sectionfont" style="font-weight: normal;">#<span style="color: goldenrod;"> Step 1: </span><br><br>Considering you are holding a completely scrambled 3x3 Rubik's Cube in your hand, the first step is to locate the white axis. That means you have to look for the face where there's a white block right in the middle of the grid.
+        And this face of the cube is going to be a reference point throughout this complete process towards the solution.</p><br><br>
+        <button class="done_button" onclick="redirectToWelcomePage()">Proceed</button>
+    </div><br>
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarItems = document.querySelectorAll(".creative-headline");
+            const interactiveElement = document.querySelector(".class_interactive");
+            
+
+            navbarItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = "1";
+                }, 500 * index); // Adjust the duration between appearances
+            });
+
+            setTimeout(() => {
+                interactiveElement.style.opacity = "1";
+            }, 500 * navbarItems.length); // Start after the navbar items animation completes
+
+           
+             // Start after the wide section animation completes
+        });
+        function redirectToWelcomePage() {
+      window.location.href = 'howto1.html';
+    }
+    function redirectToWelcomePage1() {
+      window.location.href = 'cubetheory.html';
+    }
+    function redirectToWelcomePage2() {
+      window.location.href = 'AboutUs.html';
+    }
+    function redirectToWelcomePage3() {
+      window.location.href = 'connect.html';
+    }
+        
+       
+    </script>
+</body>
+
+</html>

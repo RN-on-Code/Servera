@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #container {
+      margin-top: 300px;
+      position: relative;
+    }
+
+    .box-area {
+      margin-left: 300px;
+      position: relative;
+      transform-style: preserve-3d;
+      width: 600px;
+      height: 600px;
+      transform: rotateX(45deg) rotateY(-45deg);
+      transition: transform 0.5s ease;
+    }
+
+    .box {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border: 2px solid #262626;
+    }
+
+    .grid-container {
+      height: 100%;
+      display: grid;
+      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0px;
+      padding: 0px;
+    }
+
+    .grid-container>div {
+      border: 5px solid rgb(10, 10, 10);
+      border-radius: 5px;
+      text-align: center;
+      padding: 0;
+      font-size: 20px;
+    }
+
+    #box-back {
+      transform: translateX(-75px) translateY(-75px) translateZ(-75px);
+    }
+
+    #box-front {
+      transform: translateX(-75px) translateY(-75px) translateZ(75px);
+    }
+
+    #box-right {
+      transform: translateY(-75px) rotateY(90deg);
+    }
+
+    #box-left {
+      transform: translateY(-75px) translateX(-150px) rotateY(90deg);
+    }
+
+    #box-top {
+      transform: translateX(-75px) translateY(-150px) rotateX(90deg);
+    }
+
+    #box-bottom {
+      transform: translateX(-75px) rotateX(90deg);
+    }
+
+    .bg-back {
+      background: rgb(253, 252, 252);
+    }
+
+    .bg-right {
+      background: rgb(253, 252, 252);
+    }
+
+    .bg-left {
+      background: rgb(253, 252, 252);
+    }
+
+    .bg-top {
+      background: rgb(253, 252, 252);
+    }
+
+    .bg-bottom {
+      background: rgb(253, 252, 252);
+    }
+
+    .bg-front {
+      background: rgb(255, 255, 255);
+    }
+
+    body {
+      background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+      background-repeat: no-repeat;
+      scroll-behavior: smooth;
+      background-attachment: fixed;
+      background-position-x: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+
+    .table-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 0 10px;
+    }
+
+    td {
+      width: 50px;
+      height: 50px;
+      border: 1px solid #000;
+    }
+
+    #colorDisplay {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="output"></div>
+  <input type="file" id="imageInput" accept="image/*">
+  <br>
+  <div class="table-container" id="tableContainer"></div>
+  <div id="colorDisplay"></div>
+
+  <script>
+    let faceIndex = 0;
+    const colorTables = [];
+    const extractedColors = new Set();
+    const colorThreshold = 30;
+
+    document.getElementById('imageInput').addEventListener('change', handleImage);
+
+    function handleImage(event) {
+      const input = event.target;
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const img = new Image();
+          img.src = e.target.result;
+
+          img.onload = function () {
+            createColorTable(img);
+            promptNextFace();
+          };
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function createColorTable(image) {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 4;
+      canvas.height = 4;
+
+      ctx.drawImage(image, 0, 0, 4, 4);
+
+      const tableClone = document.createElement('table');
+
+      for (let i = 0; i < 4; i++) {
+        const row = tableClone.insertRow(i);
+
+        for (let j = 0; j < 4; j++) {
+          const cell = row.insertCell(j);
+          const color = getColor(ctx, j, i);
+          const adjustedColor = adjustColor(color);
+          cell.style.backgroundColor = `rgb(${adjustedColor[0]}, ${adjustedColor[1]}, ${adjustedColor[2]})`;
+        }
+      }
+
+      colorTables.push(tableClone);
+    }
+
+    function promptNextFace() {
+      faceIndex++;
+      if (faceIndex <= 6) {
+        document.getElementById('imageInput').value = '';
+        document.getElementById('output').innerHTML = `Upload Face ${faceIndex}: `;
+      } else {
+        document.getElementById('output').innerHTML = 'All faces uploaded.';
+      }
+      displayCurrentTable();
+    }
+
+    function displayCurrentTable() {
+      const tableContainer = document.getElementById('tableContainer');
+      tableContainer.innerHTML = '';
+
+      for (let i = 0; i < faceIndex; i++) {
+        tableContainer.appendChild(colorTables[i].cloneNode(true));
+      }
+
+      extractColors();
+      displayExtractedColors();
+    }
+
+    function extractColors() {
+      const currentTable = colorTables[faceIndex - 1];
+      const rows = currentTable.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+
+        for (let j = 0; j < cells.length; j++) {
+          const colorString = cells[j].style.backgroundColor;
+          const rgbArray = colorString.match(/\d+/g);
+          addColor(rgbArray.map(Number));
+        }
+      }
+    }
+
+    function addColor(color) {
+      for (let existingColor of extractedColors) {
+        if (areColorsSimilar(color, existingColor, colorThreshold)) {
+          return;
+        }
+      }
+
+      extractedColors.add(color.toString());
+    }
+
+    function areColorsSimilar(color1, color2, threshold) {
+      for (let i = 0; i < 3; i++) {
+        if (Math.abs(color1[i] - color2[i]) > threshold) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function displayExtractedColors() {
+      const colorDisplay = document.getElementById('colorDisplay');
+      colorDisplay.innerHTML = `Number of Unique Colors Extracted: ${extractedColors.size}<br>`;
+
+      const colorCodesList = document.createElement('ul');
+
+      extractedColors.forEach(colorString => {
+        const color = colorString.split(',').map(Number);
+        const adjustedColor = adjustColor(color);
+        const listItem = document.createElement('li');
+        listItem.textContent = `RGB(${adjustedColor[0]}, ${adjustedColor[1]}, ${adjustedColor[2]})`;
+        colorCodesList.appendChild(listItem);
+      });
+
+      colorDisplay.appendChild(colorCodesList);
+    }
+
+    function adjustColor(color) {
+      const [r, g, b] = color;
+
+      if (g > r && g > b && g - r > 65) {
+        return [0, 255, 0]; // Green
+      } else if (r > g && b && g < 70) {
+        return [255, 0, 0]; // Red
+      } else if (b > r && b > g && b - r > 100) {
+        return [0, 0, 255]; // Blue
+      } else if (b > g && r && r > 100 && g > 100) {
+        return [255, 255, 255]; // White
+      } else if (r > g && b && g > 65) {
+        return [255, 165, 0]; // Orange
+      } else if (g > r && g > 100) {
+        return [255, 255, 0]; // Yellow
+      }
+
+      return [0, 0, 0]; // Default to black for unmatched colors
+    }
+
+    function getColor(ctx, x, y) {
+      const pixel = ctx.getImageData(x, y, 1, 1).data;
+      return [pixel[0], pixel[1], pixel[2]];
+    }
+  </script>
+</body>
+</html>

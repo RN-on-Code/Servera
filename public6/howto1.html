@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>3D Rubik Cube Model</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -1250px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            
+            font-size: 15px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+        
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            width: 400px;
+            height: 400px;
+            margin-left: 400px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        .box-area1 {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -270px;
+            width: 400px;
+            height: 400px;
+            margin-left: 400px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        .box-area2 {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -100px;
+            width: 400px;
+            height: 400px;
+            margin-left: 400px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .wide-section1 {
+            margin-left: -850px;
+            width: 900px;
+            height: 230px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 530px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .wide-section2 {
+            margin-left: -850px;
+            width: 900px;
+            height: 400px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 2000px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .wide-section3 {
+            margin-left: -850px;
+            width: 900px;
+            height: 1250px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 4350px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .class_interactive1 {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .cube_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(32, 147, 218); 
+    
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; 
+    margin-left: 780px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.arrow{
+    content: '\2192'; /* Unicode character for right arrow */
+    
+    color: goldenrod;
+
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+.sectionfont{
+    font-size: 1.3em;
+}
+@media (min-width:385px) and (max-width: 768px) {
+    body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -360px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+            
+            font-size: 13px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+        
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -70px;
+            width: 400px;
+            height: 400px;
+            margin-left: 175px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        .box-area1 {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -230px;
+            width: 400px;
+            height: 400px;
+            margin-left: 665px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        .box-area2 {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: 120px;
+            width: 400px;
+            height: 400px;
+            margin-left: 665px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .sectionfont{
+    font-size: 1.20em;
+    
+}
+        .wide-section1 {
+            margin-left: -585px;
+            width:370px;
+            height:270px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 530px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .wide-section2 {
+            margin-left: -585px;
+            width: 370px;
+            height: 510px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 2100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .wide-section3 {
+            margin-left: -585px;
+            width: 370px;
+            height: 1980px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 5425px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+            
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .class_interactive1 {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .cube_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(32, 147, 218); 
+    
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button {
+            display: none;
+            background-color: #00000000;
+    cursor: pointer;
+    font-size: 18px;
+    color: #f5efef; 
+    margin-left: 250px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+
+.arrow{
+    content: '\2192'; /* Unicode character for right arrow */
+    
+    color: goldenrod;
+
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+        
+
+}
+@media(max-width: 386px) {
+    body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -360px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+            
+            font-size: 13px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+        
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -70px;
+            width: 400px;
+            height: 400px;
+            margin-left: 175px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        .box-area1 {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            width: 400px;
+            height: 400px;
+            margin-left: 665px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        .box-area2 {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: 200px;
+            width: 400px;
+            height: 400px;
+            margin-left: 665px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+        
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .sectionfont{
+    font-size: 1.20em;
+    
+}
+        .wide-section1 {
+            margin-left: -585px;
+            width:370px;
+            height:270px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 530px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .wide-section2 {
+            margin-left: -585px;
+            width: 370px;
+            height: 510px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 2150px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .wide-section3 {
+            margin-left: -585px;
+            width: 370px;
+            height: 1980px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 5425px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(25, 0, 254, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(25, 0, 254, 0.317);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .class_interactive1 {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .cube_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(32, 147, 218); 
+    
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #f5efef; 
+    margin-left: 250px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.arrow{
+    content: '\2192'; /* Unicode character for right arrow */
+    
+    color: goldenrod;
+
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+}
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-bar">
+        <a href="#" onclick="redirectToWelcomePage1()"><u>Home</u></a>
+        <a href="#" onclick="redirectToWelcomePage2()"><u>About Us</u></a>
+        <a href="#" onclick="redirectToWelcomePage3()"><u>Connect With Us</u></a>
+    </div>
+   
+      
+    
+    <div id="container">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wide-section1  class_interactive creative-headline" >
+        <p class="sectionfont" style="font-weight: normal; font-size: 1.3em;">#<span style="color: goldenrod;"> Step 2: </span><br><br>In this step you need to shape a '+' formed out of white blocks. However, rolling out the mid-edges of white color to the mid white isn't complicated. But for the condition shown below; consider following the technique mentioned.</p><br><br>
+        <button class="done_button" onclick="scrollDown()">Scroll Down</button>
+
+    </div><br>
+
+
+   
+  
+    
+    <div id="container" class="cube1" style="margin-top:1500px; margin-left: -850px; ">
+        <div class="headline"></div>
+        <div class="box-area1">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="red"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="white"></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="container" class="cube2" style="margin-top:1500px; margin-left: -850px; display: none; " >
+        <div class="headline"></div>
+        <div class="box-area1">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div class="red"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="container" class="cube3" style="margin-top:1500px; margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area1">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div ></div><div></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="container" class="cube4" style="margin-top:1500px; margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area1">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div class="red"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube5" style="margin-top:1500px; margin-left: -850px; display:none ">
+        <div class="headline"></div>
+        <div class="box-area1">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div class="red"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="container" class="cube6" style="margin-top:1500px; margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area1">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="red"></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div> 
+     
+   
+    <div class="wide-section2  class_interactive creative-headline" >
+        <p class="sectionfont" style="font-weight: normal; font-size: 1.3em;">#<span style="color:goldenrod;"> Step 2a: </span><br><br>For the solution to the current state of the cube, follow the algorithm provided below while keeping the white face in front. <br><br><b>Algorithm:</b><br>1. Right Inverse i.e. R'. <button class="cube_button" onclick="show(2)"><u>Here's How!</u></button><br>2. Bottom Towards Right i.e. BT. <button class="cube_button" onclick="show(3)"><u>Here's How!</u></button><br>3. Back Anticlockwise i.e. B. <button class="cube_button" onclick="show(4)"><u>Here's How!</u></button><br>4. Bottom Towards Left i.e. BT' <button class="cube_button" onclick="show(5)"><u>Here's How!</u></button><br>5. Right Upwards two times i.e. R2. <button class="cube_button" onclick="show(6)"><u>Here's How!</u></button> </p><br>
+        <button class="cube_button" onclick="show(1)"><u>Back To Position</u></button>
+        <button class="done_button" onclick="scrollDown()">Scroll Down</button>
+    </div><br>
+    <div id="container" class="cube10" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="green"></div><div class="green"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="orange"></div><div></div>
+                    <div></div><div class="orange"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube11" style="margin-top: 3000px;margin-left: -850px;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="red"></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube12" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="blue"></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube13" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div ></div><div class="red"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube14" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="blue"></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube15" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube16" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube17" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div class="white"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube18" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div class="white"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube19" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube20" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube21" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube22" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="red"></div><div class="blue"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube23" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="red"></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube9" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="orange"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                </div>
+            </div>
+        </div>
+        </div>
+    <div id="container" class="cube24" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube25" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="red"></div><div></div>
+                    <div class="blue"></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube26" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-left" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-top" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-back" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="red"></div><div class="red"></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div class="white"></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube27" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div class="white"></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube28" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div class="blue"></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube29" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube30" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+            
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube31" style="margin-top: 3000px;margin-left: -850px; display: none;">
+        <div class="headline"></div>
+        <div class="box-area2">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div></div><div class="white"></div><div></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div></div><div class="white"></div><div></div>
+                </div>
+            </div>
+        
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="red"></div><div></div>
+                    <div></div><div></div><div></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div></div><div></div><div></div>
+                    <div></div><div class="green"></div><div></div>
+                    <div></div><div class="blue"></div><div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+        <div class="wide-section3  class_interactive1 creative-headline" >
+            <p class="sectionfont" style="font-weight: normal; font-size: 1.3em;">#<span style="color:goldenrod;"> Step 2b: </span><br>Here you are supposed to pair up the mid-edges to their native faces; >> <button class="cube_button" onclick="mid(12)"><u>side1</u></button>, <button onclick="mid(10)" class="cube_button"><u>side2</u></button> <br> <button class="cube_button" onclick="mid(11)"><u>Back To Position</u></button><br><br> for that consider the white face as the top one and any one out of 
+                <b>Blue</b>, <b>Red</b>, <b>Orange</b>, <b>Green</b> or <b>Yellow</b> holding in front, rotate the top layer i.e the white face either towards left or right<br> until you find either one mid-edge associated with the white one to pair up with its native face, <button class="cube_button" onclick="mid(13)"><u>This Way!</u> </button><br><br> or any two adjacent ones to pair with their native faces. <button class="cube_button" onclick="mid(14)"><u>This Way!</u></button> <br><br>
+                If found only one mid-edge pairing up, follow Algorithm 1; <br>
+            (Note: Keeping the white face at the top, and that one paired up face in front <button class="cube_button" onclick="mid(13)"><u>Here's How!</u></button> ; remember <br><b>R</b> is Right Upwards<br> <b>R'</b> is Right Downwards<br> <b>L</b> is Left Downwards<br> <b>L'</b> is Left Upwards<br> <b>F</b> is Front Clockwise<br> <b>F'</b> is Front Anticlockwise<br> <b>B</b> is Back AntiClockwise<br> <b>B'</b> is Back Clockwise<br> <b>U</b> is Top Towards Left<br> <b>U'</b> is Top Towards Right<br> <b>BT</b> is Bottom Towards Right<br> <b>BT'</b> is Bottom Towards Left.)<br><br><b>Algorithm 1:</b><br>
+        <button class="cube_button" onclick="mid(15)"><u><b>R</b></u></button>, <button class="cube_button" onclick="mid(16)"><u><b>U</b></u></button>, <button class="cube_button" onclick="mid(17)"><u><b>R'</b></u></button>, <button class="cube_button" onclick="mid(18)"><u><b>U</b></u></button>, <button class="cube_button" onclick="mid(19)"><u><b>R</b></u></button>, <button class="cube_button" onclick="mid(20)"><u><b>U2</b></u></button>, <button class="cube_button" onclick="mid(21)"><u><b>R'</b></u></button>, <button class="cube_button" onclick="mid(22)"><u><b>U'</b></u></button><br><br>
+        After applying Algorithm 1, you will be either driven to the condition where you would have now ended up with pairing up two adjacent mid-edges to there faces, <button class="cube_button" onclick="mid(14)"><u>This Way!</u></button> and you here you have to follow Algorithm 2 or you may have already ended up with all paired mid-edges. To check this, just rotate the top face until you encounter either of the two situations.<br><br> If found two mid-edges pairing up, here's the algorithm;<br>(Note: Keep the white face at the top, and any one of the two adjacent paired up faces in a way that one of the two stays at the back and the second one comes to the left side of the first ones i.e. on the right side of the front ones. >> <button class="cube_button" onclick="mid(23)"><u>side1</u></button>, <button class="cube_button" onclick="mid(9)"><u>side2</u></button>)<br> <button class="cube_button" onclick="mid(23)"><u>Back To Position</u></button> <br><br><b>Algorithm 2:</b><br>  <button class="cube_button" onclick="mid(24)"><u><b>R</b></u></button>, <button class="cube_button" onclick="mid(25)"><u><b>U</b></u></button>, <button class="cube_button" onclick="mid(26)"><u><b>R'</b></u></button>, <button class="cube_button" onclick="mid(27)"><u><b>U</b></u></button>, <button class="cube_button" onclick="mid(28)"><u><b>R</b></u></button>, <button class="cube_button" onclick="mid(29)"><u><b>U2</b></u></button>, <button class="cube_button" onclick="mid(30)"><u><b>R'</b></u></button>, <button class="cube_button" onclick="mid(31)"><u><b>U'</b></u></button><br> Applying Algorithm 2 should have paired up all the mid-edges to their native faces. Just rotate the top layer pairing up any one mid-edge to its corresponding face, you will find all of the other being paired to their corresponding faces. If not, apply Algorithm 1 or 2 based on the situation of the cube, once again. </p><br><br>
+        <button class="done_button" onclick="redirectToWelcomePage()">Proceed</button>
+        </div>
+        
+    
+    
+    
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarItems = document.querySelectorAll(".creative-headline");
+            const interactiveElement = document.querySelector(".class_interactive");
+            
+
+            navbarItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = "1";
+                }, 500 * index); // Adjust the duration between appearances
+            });
+
+            setTimeout(() => {
+                interactiveElement.style.opacity = "1";
+            }, 500 * navbarItems.length); // Start after the navbar items animation completes
+
+           
+             // Start after the wide section animation completes
+        });
+        function show1() {
+            document.querySelector('.cube1').style.display = 'none'
+            document.querySelector('.cube2').style.display = 'block'
+            
+        }
+        function show2() {
+            document.querySelector('.cube2').style.display = 'none'
+            document.querySelector('.cube3').style.display = 'block'
+            
+        }
+        function show3() {
+            document.querySelector('.cube3').style.display = 'none'
+            document.querySelector('.cube4').style.display = 'block'
+            
+        }
+        function show4() {
+            document.querySelector('.cube4').style.display = 'none'
+            document.querySelector('.cube5').style.display = 'block'
+            
+        }
+        function show5() {
+            document.querySelector('.cube5').style.display = 'none'
+            document.querySelector('.cube1').style.display = 'block'
+            
+        }
+        function show (i) {
+            for(let k=1;k<=6;k++){
+                if(k==i){
+                    document.querySelector('.cube'+k).style.display = 'block';
+                }
+                else{ 
+                document.querySelector('.cube'+k).style.display='none'
+                }
+            }
+            
+            
+        }
+        function mid (j) {
+            for(let l=9;l<=31;l++){
+                if(l==j){
+                    document.querySelector('.cube'+l).style.display = 'block';
+                }
+                else{ 
+                document.querySelector('.cube'+l).style.display='none'
+                }
+            }
+            
+            
+        }
+        function scrollDown() {
+  window.scrollBy({
+    top: window.outerHeight,
+    left: 0,
+    behavior: 'smooth'
+  });
+}
+function redirectToWelcomePage() {
+      window.location.href = 'howto2.html';
+    }
+    function redirectToWelcomePage1() {
+      window.location.href = 'cubetheory.html';
+    }
+    function redirectToWelcomePage2() {
+      window.location.href = 'AboutUs.html';
+    }
+    function redirectToWelcomePage3() {
+      window.location.href = 'connect.html';
+    }
+    function toggleButtonsSection1() {
+    var buttons = document.querySelectorAll('.wide-section1 .done_button');
+
+    if (window.innerWidth >= 769) {
+        buttons[0].style.display = 'block';
+    } else {
+        buttons[0].style.display = 'none';
+    }
+}
+
+// Function to show/hide buttons in Section 2 based on viewport width
+function toggleButtonsSection2() {
+    var buttons = document.querySelectorAll('.wide-section2 .done_button');
+
+    if (window.innerWidth >= 769) {
+        buttons[0].style.display = 'block';
+    } else {
+        buttons[0].style.display = 'none';
+    }
+}
+
+// Function to show/hide buttons in Section 3 based on viewport width
+function toggleButtonsSection3() {
+    var buttons = document.querySelectorAll('.wide-section3 .done_button');
+
+    if (window.innerWidth >= 769) {
+        buttons[0].style.display = 'block';
+    } else {
+        buttons[0].style.display = 'block';
+    }
+}
+
+// Initial calls to toggleButtons functions to set initial button display based on viewport width when the page loads
+toggleButtonsSection1();
+toggleButtonsSection2();
+toggleButtonsSection3();
+
+// Event listener to call toggleButtons functions whenever the viewport is resized
+window.addEventListener('resize', function() {
+    toggleButtonsSection1();
+    toggleButtonsSection2();
+    toggleButtonsSection3();
+});
+        
+       
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!-- coordinates.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinates Page</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    label {
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 300px;
+      padding: 10px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      border: 1px solid #4caf50;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #previousCoordinates {
+      margin-top: 20px;
+    }
+  </style>
+  <script defer src="coordinateInput.js"></script>
+</head>
+<body>
+  <h1>Coordinates Page</h1>
+
+  <!-- Input fields for coordinates -->
+  <label for="x1">X1 Coordinate:</label>
+  <input type="text" id="x1" required>
+  <label for="y1">Y1 Coordinate:</label>
+  <input type="text" id="y1" required>
+  <label for="x2">X2 Coordinate:</label>
+  <input type="text" id="x2" required>
+  <label for="y2">Y2 Coordinate:</label>
+  <input type="text" id="y2" required>
+
+  <!-- Button to submit coordinates and jump to the farm field page -->
+  <button onclick="submitCoordinates();">Submit Coordinates</button>
+
+  <!-- Button to jump to the farm field page -->
+  <button onclick="redirectToFarmField()">Go to Farm Field</button>
+
+  <!-- Section to display previous coordinates -->
+  <div id="previousCoordinates"></div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUGLk-on9P5hl9J5uQJMOn3t7vJjPcpBk",
+      authDomain: "mech-53056.firebaseapp.com",
+      projectId: "mech-53056",
+      storageBucket: "mech-53056.appspot.com",
+      messagingSenderId: "364162976710",
+      appId: "1:364162976710:web:4f8294edbacd714ab4c0c7",
+      measurementId: "G-BJKR0VNJES"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Adding an observer to handle authentication state changes
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        // Function to submit coordinates to Firebase
+        window.submitCoordinates = function() {
+          // Retrieve input values for coordinates
+          const x1 = parseFloat(document.getElementById('x1').value);
+          const y1 = parseFloat(document.getElementById('y1').value);
+          const x2 = parseFloat(document.getElementById('x2').value);
+          const y2 = parseFloat(document.getElementById('y2').value);
+
+          // Validate input values
+          if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) {
+            console.error('Invalid input. Please enter valid numeric values.');
+            return;
+          }
+
+          // Save coordinates to Firebase
+          const userId = user.uid;
+          const coordinatesRef = database.ref(`users/${userId}/coordinates`);
+
+          coordinatesRef.set({
+            x1: x1,
+            y1: y1,
+            x2: x2,
+            y2: y2
+          })
+          .then(() => {
+            console.log('Coordinates saved successfully.');
+            displayPreviousCoordinates();
+          })
+          .catch(error => {
+            console.error('Error saving coordinates:', error.message);
+          });
+        };
+
+        // Function to display previous coordinates
+        function displayPreviousCoordinates() {
+          const previousCoordinatesDiv = document.getElementById('previousCoordinates');
+          previousCoordinatesDiv.innerHTML = '<h2>Previous Coordinates:</h2>';
+
+          const coordinatesRef = database.ref(`users/${user.uid}/coordinates`);
+          coordinatesRef.once('value')
+            .then(snapshot => {
+              const coordinates = snapshot.val();
+              if (coordinates) {
+                previousCoordinatesDiv.innerHTML += `<p>X1: ${coordinates.x1}, Y1: ${coordinates.y1}</p>`;
+                previousCoordinatesDiv.innerHTML += `<p>X2: ${coordinates.x2}, Y2: ${coordinates.y2}</p>`;
+              } else {
+                previousCoordinatesDiv.innerHTML += '<p>No coordinates found.</p>';
+              }
+            })
+            .catch(error => {
+              console.error('Error retrieving coordinates:', error.message);
+            });
+        };
+
+        // Call the function to display previous coordinates when the page loads
+        displayPreviousCoordinates();
+
+        // Function to redirect to the farm field page
+        window.redirectToFarmField = function() {
+          window.location.href = 'farmfield.html';
+        };
+      } else {
+        console.log('User not logged in.');
+      }
+    });
+  </script>
+</body>
+</html>

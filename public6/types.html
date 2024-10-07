@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #060000;
+        }
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 15px;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 15px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 20px;
+             margin-left: 30px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .class_interactive1 {
+            margin-top: 20px;
+             margin-left: 30px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 150px;
+            width: 1300px;
+            height: 310px;;
+            color: whitesmoke;
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(238, 255, 0, 0.372);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(247, 253, 72, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1150px;
+            margin-bottom: 150px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1080px;
+            margin-bottom: 140px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 450px;
+            height: 350px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1040px;
+            margin-bottom: 180px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-left: 35px;
+    font-size: 33px;
+    margin-top: 50px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        .new-headline1 {
+            
+    margin-left: 35px;
+    font-size: 33px;
+    margin-top: 100px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        
+        .wide-section1 {
+            margin-left:30px;
+            width:1300px;
+            height: 310px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(26, 10, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(26, 10, 253, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 35px;
+            width: 1300px;
+            height: 370px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 2, 0.317);
+        }
+        .wide-section3 {
+            margin-left: 150px;
+            width: 1300px;
+            height: 310px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(252, 251, 251, 0.402);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(250, 249, 249, 0.317);
+        }
+        .wide-section4 {
+            margin-left: 35px;
+            width: 1300px;
+            height: 340px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(57, 255, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section4:hover {
+            box-shadow: 0px 2px 20px 10px rgba(57, 255, 2, 0.317);
+        }
+        .wide-section5 {
+            margin-left: 150px;
+            width: 1300px;
+            height: 330px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 86, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section5:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 86, 2, 0.317);
+        }
+        .wide-section6 {
+            margin-left: 80px;
+            width: 1300px;
+            height: 820px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 255, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section6:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 255, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .img{
+            box-shadow: 0 12px 24px rgba(1, 84, 250, 0.363);
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+            height: 200px;
+            width: 300px;
+            margin-left: 10px;
+            
+            border-radius: 10px;
+            
+            
+        }
+        
+        .img1 {
+            height: 300px;
+            
+            box-shadow: 0 12px 24px rgba(250, 246, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        
+        
+        .img2 {
+            height: 300px;
+            margin-top: 15px;
+            box-shadow: 0 12px 24px rgba(250, 1, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img3 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(254, 253, 253, 0.363);
+            width: 330px;
+            border-radius: 10px;
+        }
+        .img4 {
+            margin-top: 20px;
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(51, 250, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img5 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 113, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .class_interactive1{
+            opacity: 0;
+            transform: opacity 0.8s ease-in-out;
+        }
+        .hi {
+            margin-left: 130px;
+        }
+        .hi1 {
+            margin-left: 720px;
+            margin-top: -80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Styling for the button */
+        .dropdown-btn {
+            
+            background: none;
+            color: white;
+            border: none;
+            margin-top: 100px;
+            margin-bottom: -30px;
+            font-size: 35px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            cursor: pointer;
+            
+        }
+
+        /* Styling for the dropdown content (hidden text) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #040000;
+            color: white;
+            min-width: 340px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* Styling for the hidden text inside the dropdown content */
+        .dropdown-content p {
+            padding: 12px 16px;
+            margin: 0;
+        }
+
+        /* Show the dropdown content when the button is clicked */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        .img6 {
+            box-shadow: 0 12px 24px rgba(250, 1, 225, 0.363);
+            border-radius: 10px;
+
+            margin-top: 40px;
+            margin-left: 50px;
+            width: 1200px;
+            height: 600px;
+        }
+        .sectionfont{
+            margin-left: 400px;
+            margin-top: -200px;
+            width: 900px;
+             font-size: 23px;
+
+        }
+        #specialfont1{
+            
+            
+            margin-top: -300px; 
+            margin-left: 400px;
+            width:900px ;
+             font-size: 23px;
+            
+
+             
+
+        }
+        .sectionfont2{
+            margin-left: 400px;
+            margin-top: -310px;
+             font-size: 23px;
+             width:900px;
+            
+        }
+        .sectionfont3{
+            margin-left: 400px;
+            margin-top: -300px;
+             font-size: 23px;
+             width:900px ;
+            
+        }
+        .sectionfont6{
+            margin-left: 10px;
+            margin-top: 50px;
+             font-size: 23px;
+             width:900px ;
+            
+        }
+        .sectionfont4{
+            margin-left: 400px;
+            margin-top: -300px;
+             font-size: 23px;
+             width:900px ;
+            
+        }
+        .sectionfont5{
+            margin-left: 400px;
+            
+            margin-top: -310px;
+             font-size: 23px;
+             width:900px ;
+            
+        }
+        @media (min-width: 385px) and (max-width:768px){
+            body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #060000;
+        }
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 10px;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 5px;
+            font-size: 13px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 20px;
+             margin-left: 30px;
+             
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 20px;
+            width: 300px;
+            height: 790px;;
+            color: whitesmoke;
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(238, 255, 0, 0.372);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(247, 253, 72, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1150px;
+            margin-bottom: 150px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1080px;
+            margin-bottom: 140px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 450px;
+            height: 350px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1040px;
+            margin-bottom: 180px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-left: 13px;
+    font-size: 1.2em;
+    margin-top: 30px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        .new-headline1 {
+            
+            margin-left: 13px;
+    font-size: 1.2em;
+    margin-top: 70px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        
+        .wide-section1 {
+            margin-left:20px;
+            width:300px;
+            height: 650px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(26, 10, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(26, 10, 253, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 20px;
+            width: 300px;
+            height: 860px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 2, 0.317);
+        }
+        .wide-section3 {
+            margin-left: 20px;
+            width: 300px;
+            height: 690px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(252, 251, 251, 0.402);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(250, 249, 249, 0.317);
+        }
+        .wide-section4 {
+            margin-left: 20px;
+            width: 300px;
+            height: 740px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(57, 255, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section4:hover {
+            box-shadow: 0px 2px 20px 10px rgba(57, 255, 2, 0.317);
+        }
+        .wide-section5 {
+            margin-left: 20px;
+            width: 300px;
+            height: 830px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 86, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section5:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 86, 2, 0.317);
+        }
+        .wide-section6 {
+            margin-left: 20px;
+            width: 300px;
+            height: 520px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 60px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 255, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section6:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 255, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .img{
+            box-shadow: 0 12px 24px rgba(1, 84, 250, 0.363);
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+            height: 200px;
+            width: 300px;
+            margin-left: 2px;
+            
+            border-radius: 10px;
+            
+            
+        }
+        .img:hover{
+            box-shadow: rgba(39, 253, 10, 0.317)
+        }
+        .img1 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 246, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img2 {
+            height: 300px;
+            margin-top: 15px;
+            box-shadow: 0 12px 24px rgba(250, 1, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img3 {
+            height: 260px;
+            box-shadow: 0 12px 24px rgba(254, 253, 253, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img4 {
+            margin-top: 20px;
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(51, 250, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img5 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 113, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .class_interactive1{
+            opacity: 0;
+            transform: opacity 0.8s ease-in-out;
+        }
+        .hi {
+            margin-left: 130px;
+        }
+        .hi1 {
+            margin-left: 720px;
+            margin-top: -80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Styling for the button */
+        .dropdown-btn {
+            
+            background: none;
+            color: white;
+            border: none;
+            margin-top: 100px;
+            margin-bottom: -30px;
+            font-size: 35px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            cursor: pointer;
+            
+        }
+
+        /* Styling for the dropdown content (hidden text) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #040000;
+            color: white;
+            min-width: 340px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* Styling for the hidden text inside the dropdown content */
+        .dropdown-content p {
+            padding: 12px 16px;
+            margin: 0;
+        }
+
+        /* Show the dropdown content when the button is clicked */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        .img6 {
+            box-shadow: 0 12px 24px rgba(250, 1, 225, 0.363);
+            border-radius: 10px;
+
+            margin-top: 20px;
+            margin-left: 1px;
+            width: 300px;
+            height: 300px;
+        }
+        .sectionfont{
+            margin-left: 1px;
+            margin-top: 50px;
+            width: 300px;
+             font-size: 1em;
+
+        }
+        #specialfont1{
+            width: 300px;
+            margin-top: 50px; 
+            margin-left: 1px;
+             font-size: 1em;
+            
+
+             
+
+        }
+        .sectionfont2{
+            margin-left: 1px;
+            margin-top: 50px;
+            width: 300px;
+             font-size: 1em;
+            
+        }
+        .sectionfont3{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+        .sectionfont6{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+        .sectionfont4{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+        .sectionfont5{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+            
+        }
+        @media (max-width:386px){
+            body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #060000;
+        }
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 10px;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 5px;
+            font-size: 13px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 20px;
+             margin-left: 30px;
+             
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 10px;
+            width: 300px;
+            height: 790px;;
+            color: whitesmoke;
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(238, 255, 0, 0.372);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(247, 253, 72, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1150px;
+            margin-bottom: 150px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1080px;
+            margin-bottom: 140px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 450px;
+            height: 350px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1040px;
+            margin-bottom: 180px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-left: 13px;
+    font-size: 1.2em;
+    margin-top: 30px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        .new-headline1 {
+            
+            margin-left: 13px;
+    font-size: 1.2em;
+    margin-top: 70px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        
+        .wide-section1 {
+            margin-left:10px;
+            width:300px;
+            height: 650px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(26, 10, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(26, 10, 253, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 10px;
+            width: 300px;
+            height: 860px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 2, 0.317);
+        }
+        .wide-section3 {
+            margin-left: 10px;
+            width: 300px;
+            height: 690px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(252, 251, 251, 0.402);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(250, 249, 249, 0.317);
+        }
+        .wide-section4 {
+            margin-left: 10px;
+            width: 300px;
+            height: 740px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(57, 255, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section4:hover {
+            box-shadow: 0px 2px 20px 10px rgba(57, 255, 2, 0.317);
+        }
+        .wide-section5 {
+            margin-left: 10px;
+            width: 300px;
+            height: 830px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 100px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 86, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section5:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 86, 2, 0.317);
+        }
+        .wide-section6 {
+            margin-left: 10px;
+            width: 300px;
+            height: 520px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 60px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 255, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section6:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 255, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .img{
+            box-shadow: 0 12px 24px rgba(1, 84, 250, 0.363);
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+            height: 200px;
+            width: 300px;
+            margin-left: 2px;
+            
+            border-radius: 10px;
+            
+            
+        }
+        .img:hover{
+            box-shadow: rgba(39, 253, 10, 0.317)
+        }
+        .img1 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 246, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img2 {
+            height: 300px;
+            margin-top: 15px;
+            box-shadow: 0 12px 24px rgba(250, 1, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img3 {
+            height: 260px;
+            box-shadow: 0 12px 24px rgba(254, 253, 253, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img4 {
+            margin-top: 20px;
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(51, 250, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img5 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 113, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .class_interactive1{
+            opacity: 0;
+            transform: opacity 0.8s ease-in-out;
+        }
+        .hi {
+            margin-left: 130px;
+        }
+        .hi1 {
+            margin-left: 720px;
+            margin-top: -80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Styling for the button */
+        .dropdown-btn {
+            
+            background: none;
+            color: white;
+            border: none;
+            margin-top: 100px;
+            margin-bottom: -30px;
+            font-size: 35px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            cursor: pointer;
+            
+        }
+
+        /* Styling for the dropdown content (hidden text) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #040000;
+            color: white;
+            min-width: 340px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* Styling for the hidden text inside the dropdown content */
+        .dropdown-content p {
+            padding: 12px 16px;
+            margin: 0;
+        }
+
+        /* Show the dropdown content when the button is clicked */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        .img6 {
+            box-shadow: 0 12px 24px rgba(250, 1, 225, 0.363);
+            border-radius: 10px;
+
+            margin-top: 20px;
+            margin-left: 1px;
+            width: 300px;
+            height: 300px;
+        }
+        .sectionfont{
+            margin-left: 1px;
+            margin-top: 50px;
+            width: 300px;
+             font-size: 1em;
+
+        }
+        #specialfont1{
+            width: 300px;
+            margin-top: 50px; 
+            margin-left: 1px;
+             font-size: 1em;
+            
+
+             
+
+        }
+        .sectionfont2{
+            margin-left: 1px;
+            margin-top: 50px;
+            width: 300px;
+             font-size: 1em;
+            
+        }
+        .sectionfont3{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+        .sectionfont6{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+        .sectionfont4{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+        .sectionfont5{
+            margin-left: 1px;
+            margin-top: 50px;
+             font-size: 1em;
+             width: 300px;
+            
+        }
+
+        }
+    </style>
+    <title>Animated Navbar</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage1()"><u>Home</u></a>
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage2()"><u>About Us</u></a>
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage3()"><u>Connect With Us</u></a>
+    </div>
+
+    <h1 class="new-headline" style="color: white;font-family: 'Times New Roman', Times, serif;"><span style="color: gray;">#</span> <u>Cubic</u> <u>Empire</u></h1>
+    <div class="wide-section1  class_interactive creative-headline">
+        <img src="4.jpg" class="img">
+        <p class="sectionfont" style=" font-family:Verdana, Geneva, Tahoma, sans-serif;">The 2x2 Rubik's Cube, often referred to as the "Pocket Cube," is a smaller and simplified version of the
+             classic 3x3 Rubik's Cube. With a 2x2 grid on each face, this cube has a total of eight miniature cubes on its surface. Despite its reduced complexity compared to its larger counterpart,
+              solving the 2x2 Rubik's Cube still presents an engaging challenge. Enthusiasts navigate through a variety of algorithms and strategies to rearrange the colors on each face, aiming for a uniform appearance.
+              <br><br> The compact size of the 2x2 Rubik's Cube makes it portable and accessible for both beginners and seasoned cube solvers, offering a captivating puzzle-solving experience in a smaller package.</p>
+        
+    </div>  
+    <div class="wide-section  class_interactive creative-headline">
+        <img src="6.jpg" class="img1">
+        <p id="specialfont1" style=" font-family:Verdana, Geneva, Tahoma, sans-serif;">
+            The 4x4 Rubik's Cube, often known as the "Rubik's Revenge," expands on the challenge presented by the classic 3x3 cube by introducing an additional layer of complexity. With a 4x4 grid on each face, this cube boasts a total of sixteen smaller cubes per side. The increased number of pieces
+             introduces parity and new solving strategies, making it a captivating puzzle for enthusiasts seeking a more intricate solving experience.
+            <br><br> Solving the 4x4 Rubik's Cube requires a comprehensive understanding of advanced algorithms and cube-solving techniques. The larger size of the cube provides a greater variety of combinations, demanding increased spatial and strategic thinking from those attempting to solve it. </p>
+        
+    </div>
+    <div class="wide-section2  class_interactive creative-headline" >
+        <img src="5.jpg" class="img2">
+        <p class="sectionfont2" style=" font-family:Verdana, Geneva, Tahoma, sans-serif;">
+            The 5x5 Rubik's Cube, commonly known as the "Professor's Cube," elevates the complexity of cube-solving to a new level. Featuring a 5x5 grid on each face, this cube introduces a substantial increase in both the number of smaller cubes and the intricacy of solving strategies. With a total of twenty-five miniature cubes per side, the 5x5 Rubik's Cube demands a sophisticated understanding of cube-solving algorithms and techniques. 
+            <br><br>Solving the cube requires addressing unique challenges such as parity errors and the need for advanced methods to maneuver the increased complexity of the puzzle. Enthusiasts of the 5x5 Rubik's Cube engage in a more intricate and mentally demanding solving experience compared to smaller variants. However, this is not an end there are other huge variants of nxn cubes like  6x6, 7x7 and so on. </p>
+        
+    </div>  
+    <div class="wide-section3  class_interactive creative-headline" >
+        <img src="7.jpg" class="img3">
+        <p class="sectionfont3" style=" font-family:Verdana, Geneva, Tahoma, sans-serif;">
+            The Mirror Cube, also known as the Mirror Blocks or Bump Cube, presents a fascinating twist on conventional Rubik's Cube designs. Unlike the uniform colors of traditional cubes, the Mirror Cube features irregularly shaped blocks, creating an optical illusion of reflective surfaces. Each face of the Mirror Cube is composed of differently sized and shaped blocks, challenging solvers to align not only the colors but also the varied shapes in a visually striking mosaic.
+            <br><br> The solving strategy for the Mirror Cube differs significantly from standard cubes, as it requires solvers to focus on reshaping the cube to achieve a coherent pattern.</p>
+        
+    </div>
+    <div class="wide-section4  class_interactive creative-headline" >
+        <img src="2.jpg" class="img4">
+        <p class="sectionfont4" style=" font-family:Verdana, Geneva, Tahoma, sans-serif;">
+            The Triangular Prism Puzzle introduces a distinctive geometric twist to the realm of three-dimensional puzzles. Unlike traditional cubic puzzles, the Triangular Prism features a prism shape with triangular faces, offering a novel challenge for puzzle enthusiasts. Each face of the puzzle showcases equilateral triangles, requiring solvers to navigate the complexities of spatial relationships and geometric patterns. 
+            <br><br>The solving process involves aligning the triangular faces to create a harmonious color arrangement, presenting a unique blend of visual and spatial problem-solving</p>
+        
+    </div> 
+    <div class="wide-section5  class_interactive creative-headline" >
+        <img src="3.jpg" class="img5">
+        <p class="sectionfont5" style=" font-family:Verdana, Geneva, Tahoma, sans-serif;">
+            The Hexagonal Cube, a captivating addition to the family of twisty puzzles, challenges enthusiasts with its unconventional shape and geometric intricacies. Featuring hexagonal faces, this cube deviates from the traditional cubic design, introducing a unique visual and solving experience. Each face is composed of six equilateral triangles, requiring solvers to navigate the complexities of hexagonal symmetry and spatial relationships.
+            <br><br> The Hexagonal Cube demands a distinct solving strategy, where aligning the colors becomes an engaging exploration of geometry and logic. With its non-traditional form and a blend of aesthetic appeal and mental challenge, the Hexagonal Cube stands as a remarkable and inventive puzzle in the diverse landscape of twisty puzzles.</p>
+        
+    </div>
+    <h2 class="new-headline1"  style="color: white; display: block;"><span style="color: gray;"># </span><u>Cube</u> <u>Confluence</u></h2>
+
+    
+    <div class="wide-section6  class_interactive creative-headline" >
+        <img src="8.jpg" class="img6">
+        <p class="sectionfont6" style=" font-family:Verdana, Geneva, Tahoma, sans-serif;">
+            However, the realm of Rubik's Cubes has expanded exponentially, giving rise to a myriad of intricate variants. Exploring the intricacies of these puzzles opens up a fascinating journey into the diverse and evolving landscape of cube-solving challenges.
+        
+    </div>
+      
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarItems = document.querySelectorAll(".creative-headline");
+            const interactiveElement = document.querySelector(".class_interactive");
+            const newHeadline = document.querySelector(".new-headline");
+            const newHeadline1 = document.querySelector(".new-headline1")
+
+            navbarItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = "1";
+                }, 500 * index); // Adjust the duration between appearances
+            });
+
+            setTimeout(() => {
+                interactiveElement.style.opacity = "1";
+            }, 500 * navbarItems.length); // Start after the navbar items animation completes
+
+            setTimeout(() => {
+                newHeadline.style.opacity = "1";
+            }, 500 * (navbarItems.length + 1)); // Start after the wide section animation completes
+            setTimeout(() => {
+                newHeadline1.style.opacity = "1";
+            }, 500 * (navbarItems.length + 1)); // Start after the wide section animation completes
+        });
+        function redirectToWelcomePage1() {
+      window.location.href = 'cubetheory.html';
+    }
+    function redirectToWelcomePage2() {
+      window.location.href = 'AboutUs.html';
+    }
+    function redirectToWelcomePage3() {
+      window.location.href = 'connect.html';
+    }
+    </script>
+</body>
+</html>

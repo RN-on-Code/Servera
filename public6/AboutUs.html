@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('bg2.jpg');
+            transition: all 1s ease-in-out;
+        }
+        .desktop-view {
+    display: block;
+}
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 15px;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 15px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 50px;
+            margin-left: 358px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .class_interactive1 {
+            margin-top: 50px;
+            margin-left: 20px;
+            font-size: 55px;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 50px;
+            width: 900px;
+            height: 500px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(238, 255, 0, 0.372);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(247, 253, 72, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1150px;
+            margin-bottom: 150px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1080px;
+            margin-bottom: 140px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 450px;
+            height: 350px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1040px;
+            margin-bottom: 180px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-top: 40px;
+            margin-left: 33px;
+            font-size: 29px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .new-headline1 {
+            
+    margin-left: 500px;
+    font-size: 29px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        .new-headline2 {
+            
+            
+           color: white; 
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            
+            display: block;
+                }
+        
+        .wide-section1 {
+            margin-left: 50px;
+            width: 900px;
+            height: 730px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #00000080;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(26, 10, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(26, 10, 253, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 2, 0.317);
+        }
+        .wide-section3 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(252, 251, 251, 0.402);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(250, 249, 249, 0.317);
+        }
+        .wide-section4 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(57, 255, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section4:hover {
+            box-shadow: 0px 2px 20px 10px rgba(57, 255, 2, 0.317);
+        }
+        .wide-section5 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 86, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section5:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 86, 2, 0.317);
+        }
+        .wide-section6 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 255, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section6:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 255, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .img{
+            box-shadow: 0 12px 24px rgba(1, 84, 250, 0.363);
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+            height: 200px;
+            width: 300px;
+            margin-left: 10px;
+            
+            border-radius: 10px;
+            
+            
+        }
+        .img:hover{
+            box-shadow: rgba(39, 253, 10, 0.317)
+        }
+        .img1 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 246, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img2 {
+            height: 300px;
+            margin-top: 15px;
+            box-shadow: 0 12px 24px rgba(250, 1, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img3 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(254, 253, 253, 0.363);
+            width: 330px;
+            border-radius: 10px;
+        }
+        .img4 {
+            margin-top: 20px;
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(51, 250, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img5 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 113, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .class_interactive1{
+            opacity: 0;
+            transform: opacity 0.8s ease-in-out;
+        }
+        .hi {
+            margin-left: 130px;
+        }
+        .hi1 {
+            margin-left: 720px;
+            margin-top: -80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Styling for the button */
+        .dropdown-btn {
+            
+            background: none;
+            color: white;
+            border: none;
+            margin-top: 100px;
+            margin-bottom: -30px;
+            font-size: 35px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            cursor: pointer;
+            
+        }
+
+        /* Styling for the dropdown content (hidden text) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #040000;
+            color: white;
+            min-width: 340px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* Styling for the hidden text inside the dropdown content */
+        .dropdown-content p {
+            padding: 12px 16px;
+            margin: 0;
+        }
+
+        /* Show the dropdown content when the button is clicked */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        .img6 {
+            box-shadow: 0 12px 24px rgba(250, 1, 225, 0.363);
+            border-radius: 10px;
+
+            margin-top: 40px;
+            margin-left: 50px;
+            width: 1200px;
+            height: 600px;
+        }
+        .nxttext{
+            width: 700px;
+            margin-left: 1050px;
+            margin-top: 90px;
+            font-size: 25px;
+            transition: margin-left 0.3s ease-in-out, margin-top 0.3s ease-in-out; /* Apply transition to specific properties */
+            
+
+        }
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .mobile-view{
+            display: none;
+        }
+        .black-bar {
+            margin-top: 15px;
+  position: static;
+  
+  height: 30px;
+  margin-left: 600px;
+  width: 15%;
+  background-color: rgba(0, 0, 0, 0.322);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  backdrop-filter: blur(100px); /* Adjust the blur value as needed */
+
+  
+}
+.social-media a {
+  color: white;
+  margin-right: 35px; /* Adjust spacing between icons */
+}
+
+.social-media a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}
+#hidden1{
+    display: block;
+}
+#hidden2{
+    display: none;
+}
+
+@media (min-width:385px) and (max-width: 768px){
+    body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: no-repeat;
+            background-color: rgba(2, 50, 92, 0.587);
+            
+            transition: all 1s ease-in-out;
+        }
+        .desktop-view{
+            display: none;
+        }
+        .mobile-view{
+            display: block;
+        }
+
+        .navbar {
+            width: 400px;
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 10px;
+            right: 0;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 5px;
+            font-size: 13px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 50px;
+            margin-left: 10px;
+            
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .class_interactive1 {
+            margin-top: 100px;
+            margin-left: 10px;
+            font-size: 55px;
+            
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 50px;
+            width: 900px;
+            height: 500px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(238, 255, 0, 0.372);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(247, 253, 72, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1150px;
+            margin-bottom: 150px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1080px;
+            margin-bottom: 140px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 450px;
+            height: 350px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1040px;
+            margin-bottom: 180px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-top: 40px;
+            margin-left: 33px;
+            font-size: 29px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .new-headline1 {
+            
+    margin-left: 500px;
+    font-size: 29px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        .new-headline2 {
+            
+            
+           color: white; 
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            
+            display: block;
+                }
+        
+        .wide-section1 {
+            margin-left: 50px;
+            width: 900px;
+            height: 730px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #00000080;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(26, 10, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(26, 10, 253, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 2, 0.317);
+        }
+        .wide-section3 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(252, 251, 251, 0.402);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(250, 249, 249, 0.317);
+        }
+        .wide-section4 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(57, 255, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section4:hover {
+            box-shadow: 0px 2px 20px 10px rgba(57, 255, 2, 0.317);
+        }
+        .wide-section5 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 86, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section5:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 86, 2, 0.317);
+        }
+        .wide-section6 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 255, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section6:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 255, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .img{
+            box-shadow: 0 12px 24px rgba(1, 84, 250, 0.363);
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+            height: 200px;
+            width: 300px;
+            margin-left: 10px;
+            
+            border-radius: 10px;
+            
+            
+        }
+        .img:hover{
+            box-shadow: rgba(39, 253, 10, 0.317)
+        }
+        .img1 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 246, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img2 {
+            height: 300px;
+            margin-top: 15px;
+            box-shadow: 0 12px 24px rgba(250, 1, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img3 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(254, 253, 253, 0.363);
+            width: 330px;
+            border-radius: 10px;
+        }
+        .img4 {
+            margin-top: 20px;
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(51, 250, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img5 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 113, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .class_interactive1{
+            opacity: 0;
+            transform: opacity 0.8s ease-in-out;
+        }
+        .hi {
+            margin-left: 130px;
+        }
+        .hi1 {
+            margin-left: 720px;
+            margin-top: -80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Styling for the button */
+        .dropdown-btn {
+            
+            background: none;
+            color: white;
+            border: none;
+            margin-top: 100px;
+            margin-bottom: -30px;
+            font-size: 35px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            cursor: pointer;
+            
+        }
+
+        /* Styling for the dropdown content (hidden text) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #040000;
+            color: white;
+            min-width: 340px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* Styling for the hidden text inside the dropdown content */
+        .dropdown-content p {
+            padding: 12px 16px;
+            margin: 0;
+        }
+
+        /* Show the dropdown content when the button is clicked */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        .img6 {
+            box-shadow: 0 12px 24px rgba(250, 1, 225, 0.363);
+            border-radius: 10px;
+
+            margin-top: 40px;
+            margin-left: 50px;
+            width: 1200px;
+            height: 600px;
+        }
+        .nxttext{
+            width: 700px;
+            margin-left: 1050px;
+            margin-top: 90px;
+            font-size: 25px;
+            transition: margin-left 0.3s ease-in-out, margin-top 0.3s ease-in-out; /* Apply transition to specific properties */
+            
+
+        }
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        #black-bar1 {
+            margin-top: 15px;
+  position: static;
+  
+  height: 30px;
+  margin-left: 70px;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.322);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  backdrop-filter: blur(200px); /* Adjust the blur value as needed */
+
+  
+}
+.black1 {
+            margin-top: 15px;
+  position: static;
+  
+  height: 30px;
+  margin-left: 600px;
+  width: 15%;
+  background-color: rgba(0, 0, 0, 0.322);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  backdrop-filter: blur(100px); /* Adjust the blur value as needed */
+
+  
+}
+.social-media1 a {
+  color: white;
+  margin-right: 35px; /* Adjust spacing between icons */
+}
+
+.social-media1 a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}
+
+
+}
+@media (max-width:386px) {
+    body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: no-repeat;
+            background-color: rgba(92, 2, 83, 0.587);
+            
+            transition: all 1s ease-in-out;
+        }
+        .desktop-view{
+            display: none;
+        }
+        .mobile-view{
+            display: block;
+        }
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 10px;
+            width: 400px;
+            right: 0;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 5px;
+            font-size: 13px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 50px;
+            margin-left: 10px;
+            
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .class_interactive1 {
+            margin-top: 100px;
+            margin-left: 10px;
+            font-size: 55px;
+            
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 50px;
+            width: 900px;
+            height: 500px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(238, 255, 0, 0.372);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(247, 253, 72, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1150px;
+            margin-bottom: 150px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1080px;
+            margin-bottom: 140px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 450px;
+            height: 350px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1040px;
+            margin-bottom: 180px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-top: 40px;
+            margin-left: 33px;
+            font-size: 29px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .new-headline1 {
+            
+    margin-left: 500px;
+    font-size: 29px;
+    color: rgb(247, 246, 246);
+    font-family: 'Times New Roman', Times, serif;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        .new-headline2 {
+            
+            
+           color: white; 
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            
+            display: block;
+                }
+        
+        .wide-section1 {
+            margin-left: 50px;
+            width: 900px;
+            height: 730px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #00000080;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(26, 10, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(26, 10, 253, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 2, 0.317);
+        }
+        .wide-section3 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(252, 251, 251, 0.402);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section3:hover {
+            box-shadow: 0px 2px 20px 10px rgba(250, 249, 249, 0.317);
+        }
+        .wide-section4 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(57, 255, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section4:hover {
+            box-shadow: 0px 2px 20px 10px rgba(57, 255, 2, 0.317);
+        }
+        .wide-section5 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 86, 2, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section5:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 86, 2, 0.317);
+        }
+        .wide-section6 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(255, 2, 255, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section6:hover {
+            box-shadow: 0px 2px 20px 10px rgba(255, 2, 255, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .img{
+            box-shadow: 0 12px 24px rgba(1, 84, 250, 0.363);
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+            height: 200px;
+            width: 300px;
+            margin-left: 10px;
+            
+            border-radius: 10px;
+            
+            
+        }
+        .img:hover{
+            box-shadow: rgba(39, 253, 10, 0.317)
+        }
+        .img1 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 246, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img2 {
+            height: 300px;
+            margin-top: 15px;
+            box-shadow: 0 12px 24px rgba(250, 1, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img3 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(254, 253, 253, 0.363);
+            width: 330px;
+            border-radius: 10px;
+        }
+        .img4 {
+            margin-top: 20px;
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(51, 250, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .img5 {
+            height: 300px;
+            box-shadow: 0 12px 24px rgba(250, 113, 1, 0.363);
+            width: 300px;
+            border-radius: 10px;
+        }
+        .class_interactive1{
+            opacity: 0;
+            transform: opacity 0.8s ease-in-out;
+        }
+        .hi {
+            margin-left: 130px;
+        }
+        .hi1 {
+            margin-left: 720px;
+            margin-top: -80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Styling for the button */
+        .dropdown-btn {
+            
+            background: none;
+            color: white;
+            border: none;
+            margin-top: 100px;
+            margin-bottom: -30px;
+            font-size: 35px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            cursor: pointer;
+            
+        }
+
+        /* Styling for the dropdown content (hidden text) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #040000;
+            color: white;
+            min-width: 340px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            font-size: 17px;
+            font-family: 'Times New Roman', Times, serif;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* Styling for the hidden text inside the dropdown content */
+        .dropdown-content p {
+            padding: 12px 16px;
+            margin: 0;
+        }
+
+        /* Show the dropdown content when the button is clicked */
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+        .img6 {
+            box-shadow: 0 12px 24px rgba(250, 1, 225, 0.363);
+            border-radius: 10px;
+
+            margin-top: 40px;
+            margin-left: 50px;
+            width: 1200px;
+            height: 600px;
+        }
+        .nxttext{
+            width: 700px;
+            margin-left: 1050px;
+            margin-top: 90px;
+            font-size: 25px;
+            transition: margin-left 0.3s ease-in-out, margin-top 0.3s ease-in-out; /* Apply transition to specific properties */
+            
+
+        }
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        #black-bar1 {
+            margin-top: 15px;
+  position: static;
+  
+  height: 30px;
+  margin-left: 70px;
+  width: 60%;
+  background-color: rgba(0, 0, 0, 0.322);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  backdrop-filter: blur(200px); /* Adjust the blur value as needed */
+
+  
+}
+.black1 {
+            margin-top: 15px;
+  position: static;
+  
+  height: 30px;
+  margin-left: 600px;
+  width: 15%;
+  background-color: rgba(0, 0, 0, 0.322);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  border-radius: 20px;
+  backdrop-filter: blur(100px); /* Adjust the blur value as needed */
+
+  
+}
+.social-media1 a {
+  color: white;
+  margin-right: 35px; /* Adjust spacing between icons */
+}
+
+.social-media1 a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}
+
+}
+
+
+    </style>
+    <title></title>
+</head>
+<body>
+    <div class="desktop-view">
+    <div class="navbar">
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage1()"><u>Home</u></a>
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage2()"><u>About Us</u></a>
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage3()"><u>Connect With Us</u></a>
+    </div>
+    
+    
+    <h1 class="class_interactive" style="color: black;  font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 55px;"><span style="color: white;">@</span>NEXT<u style="color: white;"><span style="color: black;">TH</span></u> <span style="color: white; font-family:'Times New Roman', Times, serif; ">D<u style="color: black;"><span style="color: white;">OT</span></u></span></h1>
+    <p class="nxttext creative-headline" style="color: white;margin-top: 90px; margin-left: 560px;"> <span style="margin-left: 5px;"> Welcome to <b><span style="color: black;">Nextth</span>Dot</b>, where each individual's worldview is</span> a &nbsp;&nbsp; tapestry of uniqueness and creativity. At <b><span style="color: black;">Nextth</span>Dot</b>, we &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;embark on a journey to redefine perceptions, to infuse the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;world with innovative ideas that spark inspiration and ignite &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imagination.
+
+        With a team comprised of diverse creative &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;minds, we stand poised to unveil our inaugural <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; publication, <span style="font-family: 'Times New Roman', Times, serif;"><b><i>Cube Theory.</i></b></span><br><br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Within its pages lie a collection of concepts and <br> &nbsp; &nbsp;&nbsp;&nbsp; ideologies meticulously crafted by our creative ensemble.
+        
+        <span style="margin-left: -5px;">But this is merely the beginning of our odyssey. <b><span style="color: black;">Nextth</span>Dot</b> is</span> &nbsp;&nbsp;&nbsp;  <span style="margin-left: -80px;">already on the cusp of unveiling its next groundbreaking</span> project, a &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-left: -200px;"> venture that promises to captivate and astonish. If you're </span>curious to catch a &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-left: -300px;"> glimpse of what lies on the horizon, simply drop us a line at</span> <a href="mailto:nxthdt@gmail.com" style="color: black;">nxthdt@gmail.com</a> and &nbsp;&nbsp;<span style="margin-left: -300px;"> we'll gladly share insights from our forthcoming publication.
+        
+        So</span>, stay tuned, dear reader, as &nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-left: -400px;">we continue to push the boundaries of creativity, challenging</span> norms, and crafting new &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="margin-left: -500px;"> narratives that enrich the tapestry of human thought. With</span> <b><span style="color: black;">Nextth</span>Dot</b> the journey to reimagine the world is just beginning.
+        </p>
+        <div class="black-bar">
+            
+            <div>
+            
+            <div class="social-media">
+                <a id="span" style="color: rgb(253, 253, 253);" href="mailto:nxthdt@gmail.com"><i class="fas fa-envelope fa-2x"></i></a> <!-- Email icon with mailto link -->
+                <a style="color: rgb(0, 157, 255);" href="https://x.com/Randhave_R_N?t=nmvtNyNyJd2faUpXOmB-qw&s=08 "><i class="fab fa-twitter fa-2x"></i></a>
+                <a style="color: rgb(255, 0, 217);" href="#"><i class="fab fa-instagram fa-2x"></i></a>
+    
+                <!-- Add more social media icons as needed -->
+              </div>
+              </div>
+        </div>
+        </div>
+
+        <div class="mobile-view" >
+            <div class="navbar">
+                <a href="#" class="creative-headline" onclick="redirectToWelcomePage1()"><u>Home</u></a>
+                <a href="#" class="creative-headline" onclick="redirectToWelcomePage2()"><u>About Us</u></a>
+                <a href="#" class="creative-headline" onclick="redirectToWelcomePage3()"><u>Connect With Us</u></a>
+            </div>
+            <h1 style="color: black; margin-left: 50px; text-shadow: #00000079;  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 55px;"><span style="color: white;">@</span>NEXT<u style="color: white;"><span style="color: black;">TH</span></u> <span style="color: white; font-family:'Times New Roman', Times, serif; ">D<u style="color: black;"><span style="color: white;">OT</span></u></span></h1>
+            <p class="nxttext creative-headline" style="color: white; font-size: 25px; margin-left: 5px; width: 400px; right: 0px;"> Welcome to <b><span style="color: black;">Nextth</span>Dot</b>, where each individual's worldview is a tapestry of uniqueness and creativity. At <b><span style="color: black;">Nextth</span>Dot</b>, we embark on a journey to redefine perceptions, to infuse the world with innovative ideas that spark inspiration and ignite imagination.
+
+                With a team comprised of diverse creative minds, we stand poised to unveil our inaugural publication, <span style="font-family: 'Times New Roman', Times, serif;"><b><i>Cube Theory.</i></b></span><br><br> Within its pages lie a collection of concepts and ideologies meticulously crafted by our creative ensemble.
+                
+                But this is merely the beginning of our odyssey. <b><span style="color: black;">Nextth</span>Dot</b> is already on the cusp of unveiling its next groundbreaking project, a venture that promises to captivate and astonish. If you're curious to catch a  glimpse of what lies on the horizon, simply drop us a line at</span> <a href="mailto:nxthdt@gmail.com" style="color: black;">nxthdt@gmail.com</a> and we'll gladly share insights from our forthcoming publication.
+                
+                <br><br>So, stay tuned, dear reader, as we continue to push the boundaries of creativity, challenging norms, and crafting new narratives that enrich the tapestry of human thought. With <b><span style="color: black;">Nextth</span>Dot</b> the journey to reimagine the world is just beginning.
+                </p>
+                <div id="black-bar1">
+            
+                    <div>
+                    
+                    <div class="social-media1">
+                        <a id="span" style="color: rgb(253, 253, 253);" href="mailto:nxthdt@gmail.com"><i class="fas fa-envelope fa-2x"></i></a> <!-- Email icon with mailto link -->
+                        <a style="color: rgb(0, 157, 255);" href="https://x.com/Randhave_R_N?t=nmvtNyNyJd2faUpXOmB-qw&s=08 "><i class="fab fa-twitter fa-2x"></i></a>
+                        <a style="color: rgb(255, 0, 217);" href="#"><i class="fab fa-instagram fa-2x"></i></a>
+            
+                        <!-- Add more social media icons as needed -->
+                      </div>
+                      </div>
+                </div>
+                
+                  </div>
+
+            
+
+
+
+        </div>
+        
+        
+            
+
+        
+        
+        
+        
+   
+      
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarItems = document.querySelectorAll(".creative-headline");
+            const interactiveElement = document.querySelector(".class_interactive");
+            const newHeadline = document.querySelector(".new-headline");
+            const newHeadline1 = document.querySelector(".new-headline1")
+
+            navbarItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = "1";
+                }, 500 * index); // Adjust the duration between appearances
+            });
+            setTimeout(() => {
+                interactiveElement.style.opacity = "1";
+            }, 500 * navbarItems.length); // Start after the navbar items animation completes
+
+             // Start after the wide section animation completes
+        });
+        function redirectToWelcomePage1() {
+      window.location.href = 'cubetheory.html';
+    }
+    function redirectToWelcomePage2() {
+      window.location.href = 'AboutUs.html';
+    }
+    function redirectToWelcomePage3() {
+      window.location.href = 'connect.html';
+    };
+
+    
+       
+    </script>
+</body>
+</html>

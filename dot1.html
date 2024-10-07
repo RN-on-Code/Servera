@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-Time Text Display with Firebase</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  
+</head>
+<body>
+  <h1>Type something below:</h1>
+  <input type="text" id="userInput" oninput="updateText()">
+  <p id="outputText"></p>
+
+  <script>
+    // Initialize Firebase with your configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCpqB7T-cQUkjuJsdPuSx-AmNujUASdFPw",
+      authDomain: "socialmodefinal.firebaseapp.com",
+      projectId: "socialmodefinal",
+      databaseURL: "https://socialmodefinal-default-rtdb.firebaseio.com",
+      storageBucket: "socialmodefinal.appspot.com",
+      messagingSenderId: "622286071206",
+      appId: "1:600135712196:web:68a7666d5918409e84b891"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+
+    function updateText() {
+      var inputElement = document.getElementById("userInput");
+      var outputElement = document.getElementById("outputText");
+      var userInput = inputElement.value;
+
+      // Save user input to Firebase
+      db.collection("userInput").add({
+        text: userInput
+      });
+
+      outputElement.textContent = userInput;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>3D Rubik Cube Model</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -1250px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            
+            font-size: 15px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            width: 400px;
+            height: 400px;
+            margin-left: 400px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .wide-section1 {
+            margin-left: -850px;
+            width: 900px;
+            height: 880px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 990px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(247, 245, 245, 0.363);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px  rgba(247, 245, 245, 0.363);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; 
+    margin-left: 780px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+.cube_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(32, 147, 218); 
+    
+            backdrop-filter: blur(10px);
+
+        }
+        .sectionfont{
+            font-size: 1.3em;
+        }
+        @media (min-width:385px) and (max-width: 768px){
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -360px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+            
+            font-size: 13px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            width: 400px;
+            height: 400px;
+            margin-left: 175px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .wide-section1 {
+            margin-left: -585px;
+            width: 370px;
+            height: 1480px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 1650px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(247, 245, 245, 0.363);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px  rgba(247, 245, 245, 0.363);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; 
+    margin-left: 250px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+.cube_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(32, 147, 218); 
+    
+            backdrop-filter: blur(10px);
+
+        }
+        .sectionfont{
+            font-size: 1.20em;
+        }
+
+        }
+        @media (max-width: 386px){
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.5s ease-in-out;
+            opacity: 0; /* Initial opacity set to 0 */
+            animation: fadeIn 2s ease-in-out forwards; /* CSS animation for fadeIn */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #container {
+            margin-top: 50px;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
+            animation-delay: 1s; /* Delay the animation for 1 second */
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            margin: 0 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #000000;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000;
+            margin-left: -360px;
+            
+        }
+
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+            
+            font-size: 13px;
+            
+        }
+
+        #container {
+            margin-left: 10px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        #container:hover {
+            transform: scale(1.1);
+        }
+
+        body:hover {
+            background-color: #1a1a1a;
+        }
+
+        .headline {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            transition: font-size 0.5s ease-in-out, color 0.5s ease-in-out;
+        }
+
+        .box-area {
+            position: relative;
+            transform-style: preserve-3d;
+            margin-top: -170px;
+            width: 400px;
+            height: 400px;
+            margin-left: 175px;
+            margin-bottom: -50px;
+            transform: rotateX(45deg) rotateY(-45deg) translateZ(75px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .box {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 1px solid #000;
+        }
+
+        .white { background-color: #fff; }
+        .yellow { background-color: #ff0; }
+        .green { background-color: #008000; }
+        .blue { background-color: #00f; }
+        .red { background-color: #ff0000; }
+        .orange { background-color: #ffa500; }
+        .grey { background-color: gray; }
+
+        #box-front {
+            transform: translateX(-60px) translateY(-60px) translateZ(60px);
+        }
+
+        #box-left {
+            transform: translateY(-60px) translateX(-120px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-60px) translateY(-120px) rotateX(90deg);
+        }
+
+        #box-back {
+            transform: translateX(-60px) translateY(-60px) translateZ(-60px);
+        }
+
+        #box-right {
+            transform: translateY(-60px) rotateY(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-60px) rotateX(90deg);
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .wide-section1 {
+            margin-left: -585px;
+            width: 370px;
+            height: 1480px;
+            margin-bottom: 50px;
+            color: whitesmoke;
+            margin-top: 1650px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(247, 245, 245, 0.363);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px  rgba(247, 245, 245, 0.363);
+        }
+        .class_interactive {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .done_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; 
+    margin-left: 250px;
+            backdrop-filter: blur(10px);
+
+        }
+        .done_button::after{
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px;
+    color: goldenrod; /* Adjust the spacing between text and arrow */
+}
+.done_button:hover {
+            
+    color: goldenrod; 
+    
+
+        }
+        .done_button::after:hover{
+    
+    color: rgb(251, 250, 246); /* Adjust the spacing between text and arrow */
+}
+.cube_button {
+            background-color: #00000000;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: rgb(32, 147, 218); 
+    
+            backdrop-filter: blur(10px);
+
+        }
+        .sectionfont{
+            font-size: 1.20em;
+        }
+
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-bar">
+        <a href="#" onclick="redirectToWelcomePage1()"><u>Home</u></a>
+        <a href="#" onclick="redirectToWelcomePage2()"><u>About Us</u></a>
+        <a href="#" onclick="redirectToWelcomePage3()"><u>Connect With Us</u></a>
+    </div>
+    
+    <div id="container" class="cube1">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div class="orange"></div><div class="yellow"></div><div class="red"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="blue"></div><div class="yellow"></div><div class="red"></div>
+                </div>
+            </div>
+           
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div class="green"></div><div class="red"></div><div class="red"></div>
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="blue"></div><div class="red"></div><div class="red"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div class="blue"></div><div class="blue"></div><div class="blue"></div>
+                    <div class="blue"></div><div class="blue"></div><div class="blue"></div>
+                    <div class="orange"></div><div class="blue"></div><div class="yellow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube2" style="display: none;">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div class="blue"></div><div class="yellow"></div><div class="orange"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="red"></div><div class="yellow"></div><div class="red"></div>
+                </div>
+            </div>
+           
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div class="yellow"></div><div class="green"></div><div class="green"></div>
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                    <div class="yellow"></div><div class="green"></div><div class="green"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="blue"></div><div class="red"></div><div class="green"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube3" style="display: none;">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div class="blue"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="red"></div><div class="yellow"></div><div class="yellow"></div>
+                </div>
+            </div>
+           
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="blue"></div><div class="red"></div><div class="red"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube4" style="display: none;">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div class="blue"></div><div class="yellow"></div><div class="green"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="red"></div><div class="yellow"></div><div class="green"></div>
+                </div>
+            </div>
+           
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div class="orange"></div><div class="green"></div><div class="green"></div>
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                    <div class="red"></div><div class="green"></div><div class="green"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="blue"></div><div class="red"></div><div class="yellow"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube5" style="display: none;">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div class="yellow"></div><div class="yellow"></div><div class="red"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="orange"></div>
+                </div>
+            </div>
+           
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div class="yellow"></div><div class="blue"></div><div class="blue"></div>
+                    <div class="blue"></div><div class="blue"></div><div class="blue"></div>
+                    <div class="yellow"></div><div class="blue"></div><div class="blue"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div class="orange"></div><div class="orange"></div><div class="orange"></div>
+                    <div class="orange"></div><div class="orange"></div><div class="orange"></div>
+                    <div class="orange"></div><div class="orange"></div><div class="blue"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube6" style="display: none;">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                    <div class="yellow"></div><div class="yellow"></div><div class="yellow"></div>
+                </div>
+            </div>
+           
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div class="blue"></div><div class="blue"></div><div class="blue"></div>
+                    <div class="blue"></div><div class="blue"></div><div class="blue"></div>
+                    <div class="blue"></div><div class="blue"></div><div class="blue"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div class="orange"></div><div class="orange"></div><div class="orange"></div>
+                    <div class="orange"></div><div class="orange"></div><div class="orange"></div>
+                    <div class="orange"></div><div class="orange"></div><div class="orange"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="cube7" style="display: none;">
+        <div class="headline"></div>
+        <div class="box-area">
+            <div id="box-front" class="box grey">
+                <div class="grid-container">
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                    <div class="white"></div><div class="white"></div><div class="white"></div>
+                </div>
+            </div>
+           
+            <div id="box-right" class="box grey">
+                <div class="grid-container">
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                    <div class="red"></div><div class="red"></div><div class="red"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box grey">
+                <div class="grid-container">
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                    <div class="green"></div><div class="green"></div><div class="green"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wide-section1  class_interactive creative-headline">
+        <p class="sectionfont" style="font-weight: normal;">#<span style="color: goldenrod;"> Step 8: </span><br><br>In this step you need to correct the arrangement of all the corner pieces positioned correctly with the help of <b>Step 7</b>. <br><br>
+        For that hold the cube in such a way that any two corners arranged in an unsorted manner are present on the front-right and the back-right corner positions of the cube. >> <button class="cube_button" onclick="show(2)"><b><u>This Way!</u></b></button> <br><br>
+    Apply following algorithm holding the cube in the same way:<br> <b>R</b>, <b>U2</b>, <b>R'</b>, <b>U'</b>, <b>R</b>, <b>U'</b>, <b>R'</b>, <b>L'</b>, <b>U2</b>, <b>L</b>, <b>U</b>, <b>L'</b>, <b>U</b>, <b>L</b> <br><br>(<b>Logic: </b> This algorithm rotates the corner piece in such a way that any one colour included by the two corner pieces at the front-right and back-right appearing on the right face of the cube (in this case we are pointing the yellow part of both the corner pieces appearing on the red face of the cube.) this algorithm will rotate that colour to the top layer, the colour on the top layer will be brought to the front face for the front-right corner piece, to the back face for the back-right corner piece and the one on the front face for the front-right along with the one on the back face for the back-right will be brought to the right face.) >> <button class="cube_button" onclick="show(3)"><b><u>This Way!</u></b></button><br><br>
+However, it is not necessary that you will everytime get the yellow part of the corner piece included in the right face and you make it done just by applying the algorithm once; the yellow part may also be present in the front-face for the front-right corner and in the back face for the back-right corner >> <button class="cube_button" onclick="show(4)"><b><u>This Way!</u></b></button>, in this situation you need to apply the same algorithm twice as per the logic mentioned of this algorithm. <br><br>Once you end up solving any two out of the four corner pieces in this way, do the same to sort the rest of the two corner pieces, in the same manner holding the cube in such a way that the two unsorted are on the front-right corner and the back-right corner of the cube. >> <button class="cube_button" onclick="show(5)"><b><u>This Way!</u></b></button><br><br>Here's how a completely sorted 3x3 Rubik's Cube look like, <button class="cube_button" onclick="show(6)"><b><u>Side1</u></b></button>, <button class="cube_button" onclick="show(7)"><b><u>Side2</u></b></button>.<br> That's It! <b>Congratulations</b> you made it.</p><br><br>
+        <button class="done_button" onclick="redirectToWelcomePage()">Home</button>
+    </div><br>
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarItems = document.querySelectorAll(".creative-headline");
+            const interactiveElement = document.querySelector(".class_interactive");
+            
+
+            navbarItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = "1";
+                }, 500 * index); // Adjust the duration between appearances
+            });
+
+            setTimeout(() => {
+                interactiveElement.style.opacity = "1";
+            }, 500 * navbarItems.length); // Start after the navbar items animation completes
+
+           
+             // Start after the wide section animation completes
+        });
+        function redirectToWelcomePage() {
+      window.location.href = 'index.html';
+    }
+    function show(i) {
+            for(let k=1;k<=7;k++){
+                if(k==i){
+                    document.querySelector('.cube'+k).style.display = 'block';
+                }
+                else{ 
+                document.querySelector('.cube'+k).style.display='none'
+                }
+            }
+            
+            
+        }
+        function redirectToWelcomePage1() {
+      window.location.href = 'index.html';
+    }
+    function redirectToWelcomePage2() {
+      window.location.href = 'AboutUs.html';
+    }
+    function redirectToWelcomePage3() {
+      window.location.href = 'index.html';
+    }
+        
+       
+    </script>
+</body>
+
+</html>

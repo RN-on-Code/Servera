@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <title>Image Button with Shadow</title>
+    <style>
+          @media screen and (max-width: 600px) {
+            /* Adjust styles for smaller screens here */
+            img.button-image {
+                float: left;
+  margin-right: 10px;
+                
+                height:200px;
+                /* Adjust styling for smaller screens */
+            }
+            img.button-image,
+        img.button-image1,
+        img.button-image2,
+        img.button-image3,
+        img.button-image4,
+        img.button-image5,
+        img.button-image6 {
+            
+            height: auto;
+        }
+        
+        }
+
+            
+        /* Style for the image */
+        img.button-image1 {
+            box-shadow: 3px 3px 5px #888888;
+            border-radius: 10px;
+            margin-right: 30px; /* Adjust the margin value for spacing */
+        }
+        img.button-image2 {
+            box-shadow: 3px 3px 5px #888888;
+            border-radius: 20px;
+            margin-right: 40px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent; /* Set the border */
+            border-image: linear-gradient(to right, transparent, transparent calc(50% - 1px), black, transparent calc(50% + 1px), transparent) 1;
+            border-image-slice: 1; /* Adjust the margin value for spacing */
+        }
+        img.buttonimg3 {
+            position: relative;
+            margin-left: 60px;
+            height: auto; /* Allow the image to maintain its aspect ratio */
+            max-width: 12.5%; /* Ensure the image doesn't exceed its container's width */
+        }
+        img.button-image2 {
+            margin-left: 240px;
+            margin-right:100px;
+
+        }
+
+        /* Style for the container of the last image */
+        .image-container {
+            position: relative;
+            display: inline-block; /* Display the images in a line */
+            vertical-align: top; /* Align the top edges of the images */
+        }
+
+        /* Style for the last image */
+        img.image2 {
+            border-radius: 10px;
+            position: relative;
+            top: -100%; /* Adjust the top position as needed */
+            left: 82.5%; /* Move the image to the middle of the container */
+            transform: translateX(-50%); /* Adjust to horizontally center the image */
+            transform: translateY(-95%); /* Adjust to vertically center the image */
+            max-width: 70%; /* Ensure the image doesn't exceed its container's width */
+            height: auto; /* Allow the image to maintain its aspect ratio */
+        }
+        .additional-content {
+            display: none; /* Hide the additional content by default */
+        }
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000; /* Text color */
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        .menu-container {
+            position: absolute;
+            top: 20px; /* Adjust the top position to overlap with the image */
+            right: 20px; /* Adjust the right position to move it to the right side */
+            cursor: pointer;
+            z-index: 2; /* Set a higher z-index to overlap the image */
+        }
+        /* Style for the three lines (menu icon) */
+        .menu-icon {
+            width: 30px;
+            height: 4px;
+            background-color: #333;
+            margin: 6px 0;
+        }
+        /* Create the three lines */
+        .menu-icon::before,
+        .menu-icon::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 4px;
+            background-color: #333;
+            margin: 6px 0;
+        }
+        /* Style for the dropdown menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+        /* Style for menu items */
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+        }
+        /* Hover effect for menu items */
+        .dropdown-menu a:hover {
+            background-color: #f1f1f1;
+        }
+        /* Show the dropdown menu when hovering over the menu container */
+        .menu-container:hover .dropdown-menu {
+            display: block;
+        }
+        /*.login-button {
+            background-color: #4285f4;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }*/
+        #content1 {
+    background-image: url('quill.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* You can add more styles as needed */
+    
+
+
+}
+.main-page {
+  width: 100%;
+}
+.button-image {
+  float: left;
+  margin-right: 20px;
+  margin-left: 40px; /* Adjust the margin as needed to control the space between image and text */
+  margin-bottom: 10px;
+}
+h1 {
+    margin-top: 20px; /* Adjust this value to move the image upwards */
+  font-size: 70px; /* Adjust the font size as needed */
+  margin-bottom: 7px; /* Add a small margin at the bottom of h1 */
+}
+h2 {
+  font-size: 30px; /* Adjust the font size as needed */
+  margin-top: -10px; /* Negative margin to move h2 up slightly */
+  font-weight: normal;
+  margin-bottom: 2px;
+
+}
+
+
+h1 {
+  font-size: 70px; /* Adjust the font size as needed */
+  margin-bottom: 9px;
+}
+
+h2 {
+    font-size: 30px; /* Adjust the font size as needed */
+  font-weight: normal;
+
+}
+.image-container {
+  position: relative;
+  
+}
+
+.image-container button-image11 {
+  max-width: 100%;
+  height: auto;
+  /*width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+.textoverlay{
+    position:absolute;
+    top: 0%;
+    left:0%;
+    color:#fff;
+    padding: 10px;
+    
+}
+.textoverlay h1{
+   
+    margin-left: 500px;
+    transform: translateX(-10%); /* Adjust to horizontally center the image */
+    transform: translateY(-15%);
+  font-size: 75px;
+  
+}
+
+
+.text-overlay {
+  position: relative;
+  
+  transform: translate(-50%, -180%);
+  color: #fff; /* Text color */
+  /*background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+  padding: 20px; /* Adjust padding as needed */
+  border-radius: 5px;
+}
+.text-overlay {
+  position: relative;
+  
+  transform: translate(-50%, -180%);
+  color: #fff; /* Text color */
+  /*background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+  padding: 20px; /* Adjust padding as needed */
+  border-radius: 5px;
+}
+
+.text-overlay h1 {
+    
+  font-size: 75px; /* Adjust the font size as needed */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
+  text-align: center;
+  color:black}
+  .text-overlay h2 {
+  font-size: 35px; /* Adjust the font size as needed */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
+  font-weight: normal;
+  margin-right:30px;
+  
+  
+  
+}
+.text-overlay h3 {
+  font-size: 30px; /* Adjust the font size as needed */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
+  font-weight: normal;
+  color: white ;
+  
+  
+}
+.text-overlay h4 {
+  font-size: 30px; /* Adjust the font size as needed */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
+  font-weight: normal;
+  color: white ;
+  
+  
+}
+.text-overlay h5 {
+  font-size: 50px; /* Adjust the font size as needed */
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove any default padding */
+  font-weight: normal;
+  
+  
+}
+@media only screen and (max-width: 600px) {
+            /* Adjust styles for smaller screens here */
+            .image-container{
+                max-width: 100%;
+  height: 100%;}
+
+
+            .textoverlay {
+                top: 10%; 
+                left: -90%;/* Adjust the top position for mobile */
+            }
+
+            .textoverlay h1 {
+                font-size: 10vw;
+                margin-left: 500px;
+    
+            }
+
+            .text-overlay h2 {
+                font-size: 6vw; /* Adjust the font size for mobile */
+            }
+
+            .text-overlay h3,
+            .text-overlay h4 {
+                font-size: 4vw; /* Adjust the font size for mobile */
+            }
+
+            .text-overlay h5 {
+                font-size: 8vw; /* Adjust the font size for mobile */
+            }
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="main-page" style="display:none;">
+        <img class="button-image" src="Project Nxtth dot.jpg" width="180px" height="150px" alt="Button Image">
+        <div class="text-container">
+            <h1>NEXTTH&nbsp;&nbsp;DOT</h1>
+            <h2>When Art met Words...</h2>
+            <br>
+            <hr>
+          </div>
+          
+          
+        
+        
+          <div class="image-container">
+            <img class="button-image11" src="quill.jpg" width="100%" height="100%" alt="Button Image">
+           <!-- <div class="text-overlay">
+              <h1 style="color: #fff;" >@कवि&nbsp;&nbsp;<span style="color:gold">सम्मलेन ...!</span></h1><br>
+              <h2  >~ powered by Nextth Dot</h2><br><br><br><br>
+              <h3><i><span style="color: white">WordSmiths</span><span style="color: gold"> Assemble</span>!</i></h3><br> <h4 ><i>Arm your verses,<span style="color: gold"> Sharpen your quills</span> and</i></h4><br><br>
+              <h5 ><span style="background-color: rgba(0, 0, 0, 0.5); color: white;">Step in.</span></h5>
+            </div>-->
+            <div class="textoverlay">
+                <h1>@कवि <span style="color: gold;">सम्मले...!</span></h1>
+            </div>
+          </div>
+          
+
+
+    
+        <div class="menu-container">
+            <!-- Three lines (menu icon) -->
+            <div class="menu-icon"></div>
+            <div class="dropdown-menu">
+                <a href="#" onclick="showPage('page1')">Menu Item 1</a>
+                <a href="#" onclick="showPage('page2')">Menu Item 2</a>
+                <a href="#" onclick="showPage('page3')">Menu Item 3</a>
+            </div>
+        </div>
+        
+    
+
+   <!-- <button class="login-button" onclick="signInWithGoogle()">Sign in with Google</button> -->
+    <!-- Second page content -->
+    <div id="second-page" style="display: none;">
+        <!-- Container for the last image -->
+    </div>
+
+    <!-- Third page content -->
+    <div id="third-page" style="display: none;">
+        <!-- Container for the last image -->
+    </div>
+
+    <!-- Additional content -->
+    
+
+
+
+
+
+        <script>
+             
+
+        function scrollToPreviousSection() {
+            document.getElementById('second-page').style.display = 'none';
+            // Show the second page
+            document.getElementById('main-page').style.display = 'block';
+            // Hide all content elements
+            var contentElements = document.getElementsByClassName('additional-content');
+            for (var i = 0; i < contentElements.length; i++) {
+                contentElements[i].style.display = 'none';
+            }
+            // Show the selected content element
+            var selectedContent = document.getElementById(contentId);
+            if (selectedContent) {
+                selectedContent.style.display = 'none';
+            }
+        }
+        </script>
+    </div>
+    
+    <!-- ... (content for Image 2, Image 3, and Image 4) ... -->
+    
+    <!-- Page 1 content -->
+    <div id="page1" class="page-content" style="display: none;">
+        <h2>Page 1</h2>
+        <p>This is the content for Page 1.</p>
+    </div>
+
+    <!-- Page 2 content -->
+    <div id="page2" class="page-content" style="display: none;">
+        <h2>Page 2</h2>
+        <p>This is the content for Page 2.</p>
+    </div>
+
+    <!-- Page 3 content -->
+    <div id="page3" class="page-content" style="display: none;">
+        <h2>Page 3</h2>
+        <p>This is the content for Page 3.</p>
+    </div>
+
+    <!-- Firebase Authentication -->
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCVO4Sjew6qNoZ9LyU7orPExVBHQ7pGJvw",
+            authDomain: "rnandarticles01.firebaseapp.com",
+            projectId: "rnandarticles01",
+            storageBucket: "rnandarticles01.appspot.com",
+            messagingSenderId: "50558174537",
+            appId: "1:50558174537:web:3b23d76b2c62df97e00698"
+        };
+
+        // Initialize Firebase
+       firebase.initializeApp(firebaseConfig);
+        function signInWithGoogle() {
+   var provider = new firebase.auth.GoogleAuthProvider();
+
+    // Sign in with Google using a popup
+  firebase.auth().signInWithPopup(provider)
+     .then((result) => {
+        // User signed in successfully
+        var user = result.user;
+      console.log("User signed in:", user);
+        // Redirect or show the main page here
+        // You can access user details like user.displayName, user.email, etc.
+      })
+      .catch((error) => {
+        // Handle errors here
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.error("Sign-in error:", errorMessage);
+     });
+  }
+  
+  
+        firebase.auth().onAuthStateChanged((user) => {
+           if (user) {
+                // User is signed in, show the main page
+              console.log("User is signed in:", user);
+                document.getElementById('main-page').style.display = 'block';
+            } else {
+           //     // User is not signed in, keep the main page hidden
+                console.log("User is not signed in.");
+                document.getElementById('main-page').style.display = 'block';
+           }
+      });
+
+
+        function showPage(pageId) {
+            // Hide all page content
+            document.getElementById('main-page').style.display = 'block';
+            document.getElementById('third-page').style.display = 'none';
+            // Hide all content elements
+            var contentElements = document.getElementsByClassName('page-content');
+            for (var i = 0; i < contentElements.length; i++) {
+                contentElements[i].style.display = 'none';
+           }
+            // Show the selected content element
+            var selectedContent = document.getElementById(pageId);
+            if (selectedContent) {
+              selectedContent.style.display = 'block';
+            }
+        }
+
+        function showContent(contentId) {
+            // Hide the main page
+            document.getElementById('main-page').style.display = 'none';
+            // Show the second page
+            document.getElementById('second-page').style.display = 'block';
+            // Hide all content elements
+            var contentElements = document.getElementsByClassName('additional-content');
+            for (var i = 0; i < contentElements.length; i++) {
+                contentElements[i].style.display = 'none';
+            }
+            // Show the selected content element
+            var selectedContent = document.getElementById(contentId);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

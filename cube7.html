@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/jpg" href="dali.ico" />
+    <link rel="stylesheet" href="style.css">
+    <title>3D Rubik Cube Model</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            
+            
+            margin-top: 300px;
+            position: relative;
+        }
+
+        .box-area {
+            margin-left: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            width: 600px;
+            height: 600px;
+            transform: rotateX(45deg) rotateY(-45deg);
+            transition: transform 0.5s ease; /* Added transition for smooth animation */
+        }
+
+        .box {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #262626;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 5px solid rgb(10, 10, 10);
+            border-radius: 5px;
+            text-align: center;
+            padding: 0;
+            font-size: 20px;
+        }
+
+        #box-back {
+            transform: translateX(-75px) translateY(-75px) translateZ(-75px);
+        }
+
+        #box-front {
+            transform: translateX(-75px) translateY(-75px) translateZ(75px);
+        }
+
+        #box-right {
+            transform: translateY(-75px) rotateY(90deg);
+        }
+
+        #box-left {
+            transform: translateY(-75px) translateX(-150px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-75px) translateY(-150px) rotateX(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-75px) rotateX(90deg);
+        }
+
+        .bg-back {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-right {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-left {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-top {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-bottom {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-front {
+            background: rgb(255, 255, 255);
+        }
+
+        .bg-green {
+            background: rgb(243, 245, 243);
+        }
+
+        .bg-blue {
+            background: rgb(248, 248, 249);
+        }
+
+        .bg-red {
+            background: rgb(240, 238, 238);
+        }
+
+        .bg-orange {
+            background: rgb(247, 246, 246);
+        }
+
+        .bg-yellow {
+            background: rgb(226, 226, 224);
+        }
+
+        /* Added style for buttons */
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .color-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .red { background: red; }
+        .green { background: green; }
+        .blue { background: blue; }
+        .orange { background: orange; }
+        .yellow { background: yellow; }
+        .purple { background: rgb(250, 248, 250); }
+
+
+        .rotate-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output"></div>
+    <input type="file" id="imageInput" accept="image/*">
+    <br>
+    <div id="colorDisplay"></div>
+    <div id="container">
+        <div class="box-area">
+            <div id="box-front" class="box">
+                <div class="grid-container bg-front">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+            <div id="box-left" class="box">
+                <div class="grid-container bg-left">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+            <div id="box-top" class="box">
+                <div class="grid-container bg-top">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+            <div id="box-back" class="box">
+                <div class="grid-container bg-back">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+            <div id="box-right" class="box">
+                <div class="grid-container bg-right">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box">
+                <div class="grid-container bg-bottom">
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                    <div class="grid-item"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Added button container -->
+        <div class="button-container">
+            <button class="rotate-button" onclick="rotateCube('up')">Rotate Up</button>
+            <button class="rotate-button" onclick="rotateCube('down')">Rotate Down</button>
+            <button class="rotate-button" onclick="rotateCube('left')">Rotate Left</button>
+            <button class="rotate-button" onclick="rotateCube('right')">Rotate Right</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('imageInput').addEventListener('change', handleImage);
+        let faceIndex = 0;
+        const colorTables = [];
+        const extractedColors = new Set(); // Use a Set to store unique colors
+        const colorThreshold = 30;
+
+        function extractColors() {
+            const currentTable = colorTables[faceIndex - 1];
+      const rows = currentTable.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+
+        for (let j = 0; j < cells.length; j++) {
+          const colorString = cells[j].style.backgroundColor;
+          const rgbArray = colorString.match(/\d+/g);
+          addColor(rgbArray.map(Number));
+        }
+      }
+        }
+
+        function applyColorsToCube() {
+            const frontFace = document.getElementById('box-front');
+            const backFace = document.getElementById('box-back');
+            const leftFace = document.getElementById('box-left');
+            const rightFace = document.getElementById('box-right');
+            const topFace = document.getElementById('box-top');
+            const bottomFace = document.getElementById('box-bottom');
+
+            const colorsArray = Array.from(extractedColors);
+
+            if (colorsArray.length >= 6) {
+                frontFace.style.backgroundColor = 'rgb(' + colorsArray[0] + ')';
+                backFace.style.backgroundColor = 'rgb(' + colorsArray[1] + ')';
+                leftFace.style.backgroundColor = 'rgb(' + colorsArray[2] + ')';
+                rightFace.style.backgroundColor = 'rgb(' + colorsArray[3] + ')';
+                topFace.style.backgroundColor = 'rgb(' + colorsArray[4] + ')';
+                bottomFace.style.backgroundColor = 'rgb(' + colorsArray[5] + ')';
+            } else {
+                console.error('Not enough colors extracted.');
+            }
+        }
+
+        function handleImage(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.src = e.target.result;
+
+                    img.onload = function () {
+                        
+                        promptNextFace();
+                        // Uncomment the following line to apply colors to the cube faces
+                        // applyColorsToCube();
+                        applyColorsToCube();
+                    };
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function addColor(color) {
+      // Check if a similar color already exists in the set
+      for (let existingColor of extractedColors) {
+        if (areColorsSimilar(color, existingColor, colorThreshold)) {
+          return; // Do not add similar color
+        }
+      }
+      
+      // If no similar color found, add it to the set
+      extractedColors.add(color.toString());
+    }
+
+    function areColorsSimilar(color1, color2, threshold) {
+      // Check if the difference in each channel is below the threshold
+      for (let i = 0; i < 3; i++) {
+        if (Math.abs(color1[i] - color2[i]) > threshold) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function displayExtractedColors() {
+      const colorDisplay = document.getElementById('colorDisplay');
+      colorDisplay.innerHTML = `Number of Unique Colors Extracted: ${extractedColors.size}<br>`;
+      
+      const colorCodesList = document.createElement('ul');
+      
+      extractedColors.forEach(colorString => {
+        const color = colorString.split(',').map(Number);
+        const adjustedColor = adjustColor(color);
+        const listItem = document.createElement('li');
+        listItem.textContent = `RGB(${adjustedColor[0]}, ${adjustedColor[1]}, ${adjustedColor[2]})`;
+        colorCodesList.appendChild(listItem);
+      });
+      
+      colorDisplay.appendChild(colorCodesList);
+    }
+
+    function adjustColor(color) {
+      const [r, g, b] = color;
+
+      if (g > r && g > b && g - r > 65) {
+        return [0, 255, 0]; // Green
+      } else if (r > g && b  && g < 70) {
+        return [255, 0, 0]; // Red
+      } else if (b > r && b > g && b - r > 100) {
+        return [0, 0, 255]; // Blue
+      } else if (b > g && r && r > 100 && g > 100) {
+        return [255, 255, 255]; // White
+      } else if (r > g && b && g > 65) {
+        return [255, 165, 0]; // Orange
+      } else if (g > r && g > 100) {
+        return [255, 255, 0]; // Yellow
+      }
+
+      // If no matching category found, return the original color
+      return [0,0,255];
+    }
+    function promptNextFace() {
+      faceIndex++;
+      if (faceIndex <= 6) {
+        document.getElementById('imageInput').value = '';
+        document.getElementById('output').innerHTML = `Upload Face ${faceIndex}: `;
+      } else {
+        document.getElementById('output').innerHTML = 'All faces uploaded.';
+      }
+      
+    }
+        // Other functions (addColor, areColorsSimilar, displayExtractedColors, etc.) remain unchanged
+        /* ... */
+
+        function rotateCube(direction) {
+            const boxArea = document.querySelector('.box-area');
+
+            switch (direction) {
+                case 'up':
+                    boxArea.style.transform = 'rotateX(45deg) rotateY(-45deg) translateZ(75px) translateY(25px)';
+                    break;
+                case 'down':
+                    boxArea.style.transform = 'rotateX(-45deg) rotateY(45deg) translateZ(75px)';
+                    break;
+                case 'left':
+                    boxArea.style.transform = 'rotateX(45deg) rotateY(45deg) translateY(600px)';
+                    break;
+                case 'right':
+                    boxArea.style.transform = 'rotateX(45deg) rotateY(-45deg) translateX(75px)';
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Comparison</title>
+  <script src="https://cdn.jsdelivr.net/npm/color-thief@2.3.0/dist/color-thief.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/color-thief@2.3.0/dist/color-thief.min.js" onload="colorThiefLoaded()"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    .image-input {
+      margin-bottom: 20px;
+    }
+
+    .image-container {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .result-container {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="image-input">
+    <input type="file" id="imageInput1" accept="image/*" onchange="processImage(1)">
+  </div>
+
+  <div class="image-input">
+    <input type="file" id="imageInput2" accept="image/*" onchange="processImage(2)">
+  </div>
+
+  <div class="image-container">
+    <div>
+      <img id="uploadedImage1" style="max-width: 100%;" alt="Uploaded Image 1" onload="processImage(1)">
+      <div class="result-container">
+        <p>Brightness: <span id="brightness1">0</span></p>
+        <p>Contrast: <span id="contrast1">0</span></p>
+        <p>Temperature: <span id="temperature1">0</span></p>
+      </div>
+    </div>
+
+    <div>
+      <img id="uploadedImage2" style="max-width: 100%;" alt="Uploaded Image 2" onload="processImage(2)">
+      <div class="result-container">
+        <p>Brightness: <span id="brightness2">0</span></p>
+        <p>Contrast: <span id="contrast2">0</span></p>
+        <p>Temperature: <span id="temperature2">0</span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let colorThief;
+  
+    function colorThiefLoaded() {
+      colorThief = new ColorThief();
+    }
+  
+    function processImage(imageNumber) {
+      const uploadedImage = document.getElementById(`uploadedImage${imageNumber}`);
+      const brightnessSpan = document.getElementById(`brightness${imageNumber}`);
+      const contrastSpan = document.getElementById(`contrast${imageNumber}`);
+      const temperatureSpan = document.getElementById(`temperature${imageNumber}`);
+  
+      // Ensure the image is fully loaded
+      if (!uploadedImage.complete) {
+        return;
+      }
+  
+      if (!colorThief) {
+        console.error('ColorThief is not loaded.');
+        return;
+      }
+  
+      // Get color information using color-thief library
+      const dominantColor = colorThief.getColor(uploadedImage);
+  
+      // Calculate brightness, contrast, and temperature based on color
+      const brightness = (dominantColor[0] * 299 + dominantColor[1] * 587 + dominantColor[2] * 114) / 1000;
+      const contrast = Math.max(...dominantColor) - Math.min(...dominantColor);
+      const temperature = calculateTemperature(dominantColor);
+  
+      // Display metrics
+      brightnessSpan.textContent = brightness.toFixed(2);
+      contrastSpan.textContent = contrast.toFixed(2);
+      temperatureSpan.textContent = temperature.toFixed(2);
+    }
+  
+    // Calculate temperature based on RGB values
+    function calculateTemperature(rgb) {
+      const r = rgb[0] / 255;
+      const g = rgb[1] / 255;
+      const b = rgb[2] / 255;
+  
+      const temperature = 0.3127 * r + 0.4296 * g + 0.2126 * b;
+  
+      return temperature * 10000;
+    }
+  </script>
+  
+
+</body>
+</html>

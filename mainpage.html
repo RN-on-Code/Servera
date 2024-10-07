@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Page Title</title>
+  <style>
+    body {
+      background-image: url('flex.jpg');
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .top-bar {
+      background-color: rgb(0, 0, 0); /* Light green with transparency */
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: blue;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    .welcome-bar {
+        margin-top: 5%;
+        border-radius: 10px;
+        background-color: rgb(0, 0, 0); /* Green bar */
+      width: 60%;
+      padding: 10px;
+      color: white;
+      margin-left: 20%;
+      text-align: center;
+      border-radius: 10px;
+      z-index: 2; /* Ensure it's on top of other elements */
+      backdrop-filter: blur(2px);
+    }
+
+    /* Button styles */
+    .round-up-button {
+      background-color: black;
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      margin-top: 5%;
+      margin-left: 42%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.904);
+    }
+
+    .round-up-button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo" style="margin-left: 1%;">Agro<span style="color: rgb(6, 255, 6);">Bot</span></div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Logout</a>
+      <a href="#">Dashboard</a>
+    </div>
+  </div>
+
+  <div class="welcome-bar" id="welcomeBar">
+    <h2>Welcome, <span id="usernamePlaceholder">[username]</span></h2>
+  </div>
+
+  <!-- Button: Round-Up the Field -->
+  <button class="round-up-button" id="roundupbutton" onclick="redirectcoordinatespage()">Round-Up the Field</button>
+  <button onclick="redirectToBotDirect()" style="margin-left: -1%;margin-top: 1%;" class="round-up-button" id="roundupbutton">/    Direct your bot</button>
+  <!-- Your page content goes here -->
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUGLk-on9P5hl9J5uQJMOn3t7vJjPcpBk",
+      authDomain: "mech-53056.firebaseapp.com",
+      projectId: "mech-53056",
+      storageBucket: "mech-53056.appspot.com",
+      messagingSenderId: "364162976710",
+      appId: "1:364162976710:web:4f8294edbacd714ab4c0c7",
+      measurementId: "G-BJKR0VNJES"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Firebase Auth and Database references
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // Check if a user is logged in
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in, retrieve and display username
+        const userId = user.uid;
+
+        // Assuming you have a 'users' collection in your Firebase database
+        const userRef = database.ref(`users/${userId}`);
+
+        userRef.on('value', snapshot => {
+          const userData = snapshot.val();
+          const username = userData.username || 'Guest';
+
+          // Update the welcome message with the retrieved username
+          document.getElementById('usernamePlaceholder').textContent = username;
+        });
+      } else {
+        // User is not logged in, handle accordingly
+        console.log('User not logged in.');
+      }
+    });
+
+    // Round-Up the Field Function
+    
+    function redirectcoordinatespage() {
+      window.location.href = 'coordinates.html';
+    }
+    // mainpage.js
+
+// Function to redirect to the bot directing page
+function redirectToBotDirect() {
+  window.location.href = 'botdirect.html';  // Replace with the actual page you want to navigate to
+}
+
+
+  </script>
+</body>
+</html>

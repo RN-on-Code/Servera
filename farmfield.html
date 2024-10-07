@@ -1,0 +1,186 @@
+<!-- farmfield.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farm Field Dot Movement</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    #farmField {
+      position: relative;
+      width: 70vw; /* 70% of the width of the screen */
+      height: 50vh; /* 50% of the height of the screen */
+      border: 2px solid #333;
+      overflow: hidden;
+    }
+
+    #dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      border-radius: 50%;
+      transition: transform 1s linear, background-color 0.5s; /* Added background-color transition */
+    }
+
+    #speedRange {
+      margin-top: 20px;
+    }
+
+    #moveButton {
+      margin-top: 20px;
+      background-color: #000;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #moveButton:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body onload="startInitialMovement()">
+  <div id="farmField">
+    <div id="dot"></div>
+  </div>
+
+  <label for="speedRange">Speed:</label>
+  <input type="range" id="speedRange" min="1" max="10" value="5" step="1" onchange="updateSpeed()">
+
+  <button id="moveButton" onclick="startMoving()">Move</button>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUGLk-on9P5hl9J5uQJMOn3t7vJjPcpBk",
+      authDomain: "mech-53056.firebaseapp.com",
+      projectId: "mech-53056",
+      storageBucket: "mech-53056.appspot.com",
+      messagingSenderId: "364162976710",
+      appId: "1:364162976710:web:4f8294edbacd714ab4c0c7",
+      measurementId: "G-BJKR0VNJES"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    // Function to move the dot from start to end coordinates with a specified speed
+    function moveDot(startX, startY, endX, endY, speed) {
+      const dot = document.getElementById('dot');
+      const farmField = document.getElementById('farmField');
+
+      // Convert percentage coordinates to pixels
+      const pixelStartX = (startX / 100) * farmField.offsetWidth;
+      const pixelStartY = (startY / 100) * farmField.offsetHeight;
+      const pixelEndX = (endX / 100) * farmField.offsetWidth;
+      const pixelEndY = (endY / 100) * farmField.offsetHeight;
+
+      // Calculate the distance between start and end points
+      const distance = Math.sqrt(Math.pow(pixelEndX - pixelStartX, 2) + Math.pow(pixelEndY - pixelStartY, 2));
+
+      // Calculate the duration based on speed
+      const duration = (distance / speed) * 1000;
+
+      // Set the initial position of the dot
+      dot.style.transform = `translate(${pixelStartX}px, ${pixelStartY}px)`;
+
+      // Use setTimeout to allow rendering before applying transition
+      setTimeout(() => {
+        // Move the dot to the end coordinates with the specified duration
+        dot.style.transition = `transform ${duration}ms linear, background-color 0.5s`;
+        dot.style.transform = `translate(${pixelEndX}px, ${pixelEndY}px)`;
+        dot.style.backgroundColor = 'green'; // Turn dot to green when it reaches the final position
+      }, 0);
+    }
+
+    // Function to start moving the dot based on coordinates from Firebase
+    function startMoving() {
+      // Adding an observer to handle authentication state changes
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // Retrieve coordinates from Firebase for the most recent user
+          const userId = user.uid;
+          const coordinatesRef = database.ref(`users/${userId}/coordinates`);
+
+          coordinatesRef.once('value')
+            .then(snapshot => {
+              const coordinates = snapshot.val();
+              if (coordinates) {
+                // Start moving the dot with the retrieved coordinates
+                moveDot(coordinates.x1, coordinates.y1, coordinates.x2, coordinates.y2, coordinates.speed);
+              } else {
+                console.log('No coordinates found.');
+              }
+            })
+            .catch(error => {
+              console.error('Error retrieving coordinates:', error.message);
+            });
+        } else {
+          console.log('User not logged in.');
+        }
+      });
+    }
+
+    // Function to update the speed based on the range input
+    function updateSpeed() {
+      const speedRange = document.getElementById('speedRange');
+      const speed = speedRange.value;
+      // Example: Move the dot from (10, 10) to (90, 10) with the updated speed
+      moveDot(10, 10, 90, 10, speed);
+    }
+
+    // Function to start initial movement of the dot based on initial coordinates from Firebase
+    function startInitialMovement() {
+      // Adding an observer to handle authentication state changes
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // Retrieve initial coordinates from Firebase for the most recent user
+          const userId = user.uid;
+          const coordinatesRef = database.ref(`users/${userId}/coordinates`);
+
+          coordinatesRef.once('value')
+            .then(snapshot => {
+              const coordinates = snapshot.val();
+              if (coordinates) {
+                // Move the dot to the initial coordinates when the page loads
+                const dot = document.getElementById('dot');
+                const farmField = document.getElementById('farmField');
+                const pixelInitialX = (coordinates.x1 / 100) * farmField.offsetWidth;
+                const pixelInitialY = (coordinates.y1 / 100) * farmField.offsetHeight;
+                dot.style.transform = `translate(${pixelInitialX}px, ${pixelInitialY}px)`;
+                dot.style.backgroundColor = 'red'; // Reset color to red
+              } else {
+                console.log('No coordinates found.');
+              }
+            })
+            .catch(error => {
+              console.error('Error retrieving coordinates:', error.message);
+            });
+        } else {
+          console.log('User not logged in.');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

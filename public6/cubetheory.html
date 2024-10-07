@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Include Font Awesome CSS -->
+<link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            overflow-y: scroll;
+
+           /* Hide overflow for the overlay effect */
+        }
+    
+        .header-image {
+            width: 100%;
+            max-width: 100vw;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            /*background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);*/
+            background-color: #292828;
+            z-index: -1;
+        }
+
+        .headline-container {
+            margin-top: 20px;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: row; /* Arrange letters in a row */
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        #C, #U {
+            color: rgb(252, 249, 249);
+            font-size: 5em; /* Larger font size for C, U, B, E */
+        }
+
+        #B, #E {
+            color: rgb(3, 0, 0);
+            margin-top: 8px;
+            font-size: 2.5em; /* Smaller font size for B and E */
+        }
+
+        #theory {
+            color: #040000;
+            margin-top: -5px;
+            margin-right: 10px;
+            font-size: 2em; /* Font size for Theory */
+            align-self: flex-end; /* Align Theory to the bottom of the container */
+            margin-left: 5px; /* Add a small margin between CUBE and Theory */
+            animation: bounceAnimation 1s ease-in-out forwards;
+        }
+        .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; /* Set the color you want for the text */
+}
+
+.button::after {
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px; /* Adjust the spacing between text and arrow */
+}
+
+        #facticide {
+            margin-left: -925px;
+            
+            width: 300px;
+            height: 210px;
+            
+            margin-top: 400px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 0.6s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(225, 17, 17, 0.9); /* Add a dark shadow */
+        }
+        #facticide:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(28, 71, 180, 0.5); /* Increase the shadow on hover */
+}
+#facticide1 {
+            margin-left: 130px;
+            
+            width: 300px;
+            height: 200px;
+            margin-top: 400px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 0.6s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(28, 71, 180, 0.5); /* Add a dark shadow */
+        }
+        #facticide1:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(255, 234, 3, 0.5);
+        }
+        @keyframes bounceAnimation {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+           
+
+        }
+        #facticide2 {
+            margin-left: 120px;
+            
+            width: 300px;
+            height: 200px;
+            margin-top: 400px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 1s ease-in-out;;
+            box-shadow: 0 12px 24px goldenrod; /* Add a dark shadow */
+        }
+        #facticide2:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(255, 3, 3, 0.5);
+        }
+        @keyframes bounceAnimation {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+           
+
+        }
+        .black-bar {
+  position: static;
+  margin-top: 800px;
+  height: auto;
+  
+  margin-left: -1400px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+.social-media a {
+  color: white;
+  margin-right: 35px; /* Adjust spacing between icons */
+}
+
+.social-media a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}
+.introbutton {
+    margin-top: 10px;
+    background-color: #000000;
+    border: none;
+    color: white;
+}
+.span:hover{
+    color: rgb(0, 110, 255);
+}
+.top{
+    margin-left: 100px;
+    margin-top: 100px;
+}
+.top2{
+    font-size: 65px;
+    margin-left: 275px;
+}
+.privacy {
+    background: none;
+    border: none;
+    margin-top: 15px;
+    color: white;
+}
+
+@media (min-width:385px) and (max-width: 768px) {
+    .header-image {
+            width: 100%;
+            max-width: 100vw;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 325px;
+            /*background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);*/
+            background-color: #292828;
+            z-index: -1;
+        }
+
+        .headline-container {
+            margin-top: 20px;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: row; /* Arrange letters in a row */
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        #C, #U {
+            color: rgb(252, 249, 249);
+            font-size: 2em; /* Larger font size for C, U, B, E */
+        }
+
+        #B, #E {
+            color: rgb(3, 0, 0);
+            margin-top: 8px;
+            font-size: 1.5em; /* Smaller font size for B and E */
+        }
+
+        #theory {
+            color: #030000;
+            margin-top: -20px;
+            margin-right: 10px;
+            font-size: 1.25em; /* Font size for Theory */
+            align-self: flex-end; /* Align Theory to the bottom of the container */
+            margin-left: 5px; /* Add a small margin between CUBE and Theory */
+            animation: bounceAnimation 1s ease-in-out forwards;
+        }
+        .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; /* Set the color you want for the text */
+}
+
+.button::after {
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px; /* Adjust the spacing between text and arrow */
+}
+
+        #facticide {
+            margin-left: -250px;
+            
+            width: 250px;
+            height: 190px;
+            
+            margin-top: 370px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 0.6s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(225, 17, 17, 0.9); /* Add a dark shadow */
+        }
+        #facticide:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(28, 71, 180, 0.5); /* Increase the shadow on hover */
+}
+#facticide1 {
+            margin-left: -290px;
+            
+            width: 250px;
+            height: 190px;
+            margin-top: 660px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 0.6s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(28, 71, 180, 0.9); /* Add a dark shadow */
+        }
+        #facticide1:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(255, 234, 3, 0.9);
+        }
+        @keyframes bounceAnimation {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+           
+
+        }
+        #facticide2 {
+            margin-left: -290px;
+            
+            width: 250px;
+            height: 210px;
+            margin-top: 950px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 1s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(255, 2, 192, 0.9);; /* Add a dark shadow */
+        }
+        #facticide2:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(255, 3, 3, 0.9);
+        }
+        @keyframes bounceAnimation {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+           
+
+        }
+        .black-bar {
+  position: static;
+  margin-top: 1300px;
+  height: auto;
+  
+  margin-left: -360px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  margin-bottom: -1000px;
+  text-align: center;
+}
+.social-media a {
+  color: white;
+  margin-right: 35px; /* Adjust spacing between icons */
+}
+
+.social-media a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}
+.introbutton {
+    margin-top: 10px;
+    background-color: #000000;
+    border: none;
+    color: white;
+}
+.span{
+    color: rgb(0, 110, 255);
+}
+.top{
+    font-size: 1.5em;
+    margin-left: -90px;
+}
+.top2{
+    font-size: 3em;
+    margin-left: -70px;
+    margin-top: 30px;
+    font-size: 40px;
+    width: 200px;
+
+}
+    
+}
+@media(max-width: 384px) {
+    .header-image {
+            width: 100%;
+            max-width: 100vw;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 325px;
+            /*background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);*/
+            background-color: #292828;
+            z-index: -1;
+        }
+
+        .headline-container {
+            margin-top: 20px;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: row; /* Arrange letters in a row */
+        }
+
+        .creative-headline {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        #C, #U {
+            color: rgb(252, 249, 249);
+            font-size: 2em; /* Larger font size for C, U, B, E */
+        }
+
+        #B, #E {
+            color: rgb(3, 0, 0);
+            margin-top: 8px;
+            font-size: 1.5em; /* Smaller font size for B and E */
+        }
+
+        #theory {
+            color: #070000;
+            margin-top: -20px;
+            margin-right: 10px;
+            font-size: 1.25em; /* Font size for Theory */
+            align-self: flex-end; /* Align Theory to the bottom of the container */
+            margin-left: 5px; /* Add a small margin between CUBE and Theory */
+            animation: bounceAnimation 1s ease-in-out forwards;
+        }
+        .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #f5efef; /* Set the color you want for the text */
+}
+
+.button::after {
+    content: '\2192'; /* Unicode character for right arrow */
+    margin-left: 5px; /* Adjust the spacing between text and arrow */
+}
+
+        #facticide {
+            margin-left: -280px;
+            
+            width: 250px;
+            height: 190px;
+            
+            margin-top: 370px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 0.6s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(225, 17, 17, 0.9); /* Add a dark shadow */
+        }
+        #facticide:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(28, 71, 180, 0.5); /* Increase the shadow on hover */
+}
+#facticide1 {
+            margin-left: -290px;
+            
+            width: 250px;
+            height: 190px;
+            margin-top: 660px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 0.6s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(28, 71, 180, 0.9); /* Add a dark shadow */
+        }
+        #facticide1:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(255, 234, 3, 0.9);
+        }
+        @keyframes bounceAnimation {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+           
+
+        }
+        #facticide2 {
+            margin-left: -290px;
+            
+            width: 250px;
+            height: 210px;
+            margin-top: 950px; /* Adjust the margin as needed */
+            padding: 20px; /* Add padding for better spacing */
+            background-color: #000000; /* Set background color for the facticide section */
+            border-radius: 8px; /* Add border-radius for rounded corners */
+            /*box-shadow: 100 100 100px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: transform 1s ease-in-out,  box-shadow 1s ease-in-out;;
+            box-shadow: 0 12px 24px rgba(255, 2, 192, 0.9);; /* Add a dark shadow */
+        }
+        #facticide2:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the pop-up effect */
+    box-shadow: 0 24px 48px rgba(255, 3, 3, 0.9);
+        }
+        @keyframes bounceAnimation {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+           
+
+        }
+        .black-bar {
+  position: static;
+  margin-top: 1300px;
+  height: auto;
+  
+  margin-left: -330px;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  margin-bottom: -1000px;
+  text-align: center;
+}
+.social-media a {
+  color: white;
+  margin-right: 35px; /* Adjust spacing between icons */
+}
+
+.social-media a:last-child {
+  margin-right: 0; /* Remove margin for the last icon */
+}
+.introbutton {
+    margin-top: 10px;
+    background-color: #000000;
+    border: none;
+    color: white;
+}
+.span{
+    color: rgb(0, 110, 255);
+}
+.top{
+    font-size: 1.5em;
+    margin-left: -90px;
+}
+.top2{
+    font-size: 3em;
+    margin-left: -70px;
+    margin-top: 30px;
+    font-size: 40px;
+    width: 200px;
+
+}
+    
+}
+
+
+
+
+
+
+
+        
+    </style>
+    <title>Cube Theory</title>
+</head>
+<body>
+    <!--<img class="header-image" src="title.jpg" alt="Header Image">-->
+    <div class="overlay"></div>   
+
+    <div class="headline-container">
+        <h1 class="creative-headline" id="C">C</h1>
+        <h1 class="creative-headline" id="U">U</h1>
+        <h1 class="creative-headline" id="B">B</h1>
+        <h1 class="creative-headline" id="E">E</h1>
+        <h2 class="creative-headline" id="theory">T<u style="color: rgb(1, 0, 0);">heor</u>y<span style="color: rgb(252, 246, 246);">;</span></h2>
+    </div>
+    <div class="creative-headline">
+    <h1 class="top" style=" color: white;">By</h1>
+    <p class="top2" ><span style="font-family: 'Times New Roman', Times, serif;"><b>NEXT<u style="color: white;"><span style="color: black;">TH</span></u></span> &nbsp; <span style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> <span style="color: white;">D<u style="color: black;"><span style="color: white;">OT</span></u></span> </b></p>
+</div>
+    <!-- Facticide Section -->
+    <div class="creative-headline" id="facticide" onclick="redirectToWelcomePage1()">
+        <h3 style="color: rgb(52, 51, 51);font-size: 1.5em; margin-top: -6px;"><span style="color: white;">#</span> Facticides</h3>
+        <p style="color: aliceblue;"><i>Do you consider yourself a GOAT (genius of all times) just by pairing up a single side of a Rubix's Cube? You shouldn't! even if you managed to make all of those. Let me tell you...  </i></p>
+        <button class="button">Get In</button>
+    </div>
+    <div class="creative-headline" id="facticide1" onclick="redirectToWelcomePage()">
+        <h3 style="color: rgb(52, 51, 51);font-size: 1.5em; margin-top: -6px;"><span style="color: white;">#</span> How-To ?</h3>
+        <p style="color: aliceblue;"><i>Here's how you can actually get your crowd in. Learn how to solve a Rubik's Cube! Here's a set of techniques and algorithms taking you towards a sorted solution of a scrambled Rubik's Cube...</i></p>
+        <button class="button">Get In</button>
+    </div>
+    <div class="creative-headline" id="facticide2" onclick="redirectToWelcomePage2()">
+        <h3 style="color: rgb(52, 51, 51);font-size: 1.5em; margin-top: -6px;"><span style="color: white;">#</span> Other Than 3x3</h3>
+        <p style="color: aliceblue;"><i> From the classic 3x3 Cube to the intricacies of higher-order cubes and specialty variants, this compilation explores the evolution of Rubik's Cubes, offering insights into the unique solving experiences each type presents.</i></p>
+        <button class="button">Get In</button>
+    </div>
+    <div class="black-bar">
+        <button class="introbutton" style="font-size:20px;" onclick="redirectToWelcomePage3()">What's <b><span class="span" style="font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"> NEXTTH DOT </span></b>?</button><br>
+        <h1>&</h1>
+        <div>
+        <h1 style="font-family:Georgia, 'Times New Roman', Times, serif;font-size: 20px;">Stay Tuned @:</h1><br>
+        
+        <div class="social-media">
+            <a id="span" style="color: rgb(253, 253, 253);" href="mailto:nxthdt@gmail.com"><i class="fas fa-envelope fa-2x"></i></a> <!-- Email icon with mailto link -->
+            <a style="color: rgb(0, 157, 255);" href="https://x.com/Randhave_R_N?t=nmvtNyNyJd2faUpXOmB-qw&s=08 "><i class="fab fa-twitter fa-2x"></i></a>
+            <a style="color: rgb(255, 0, 217);" href="#"><i class="fab fa-instagram fa-2x"></i></a>
+
+            <!-- Add more social media icons as needed -->
+          </div>
+          </div>
+          <button class="privacy" onclick="redirect()">Privacy Policy</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const letters = document.querySelectorAll(".creative-headline");
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.style.opacity = "1";
+                }, 500 * index); // Adjust the duration between appearances
+            });
+
+            const theoryWord = document.getElementById("theory");
+            setTimeout(() => {
+                theoryWord.style.opacity = "1";
+            }, 500 * letters.length); // Start after the "CUBE" animation completes
+        });
+        function redirectToWelcomePage() {
+      window.location.href = 'howto.html';
+    }
+    function redirectToWelcomePage1() {
+      window.location.href = 'facticides.html';
+    }
+    function redirectToWelcomePage2() {
+      window.location.href = 'types.html';
+    }
+    function redirectToWelcomePage3() {
+      window.location.href = 'AboutUs.html';
+    }
+    function redirect() {
+      window.location.href = 'privacypolicy.html';
+    }
+    </script>
+</body>
+</html>

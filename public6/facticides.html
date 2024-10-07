@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #080101;
+        }
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 15px;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 15px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 20px;
+             margin-left: 30px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 50px;
+            width: 900px;
+            height: 500px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(72, 141, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(72, 141, 253, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1150px;
+            margin-bottom: 150px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 400px;
+            height: 600px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1080px;
+            margin-bottom: 140px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 450px;
+            height: 350px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 1040px;
+            margin-bottom: 180px;
+            margin-top: -1000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-top: 40px;
+            margin-left: 33px;
+            font-size: 35px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .new-headline1 {
+            
+    margin-left: 35px;
+    font-size: 35px;
+    color: rgb(247, 246, 246);
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        
+        .wide-section1 {
+            margin-left: 50px;
+            width: 900px;
+            height: 730px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(39, 253, 10, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(39, 253, 10, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 50px;
+            width: 900px;
+            height: 600px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(133, 1, 122, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(133, 1, 122, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .sectionfont{
+            font-size: 1.3em;
+        }
+        @media (min-width:385px) and (max-width: 768px){
+            body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #080101;
+        }
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 10px;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 13px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 20px;
+             margin-left: 13px;
+             font-size: 1.3em;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 20px;
+            width: 300px;
+            height: 770px;
+            color: whitesmoke;
+            margin-top: 250px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(72, 141, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(72, 141, 253, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 110px;
+            margin-bottom: 880px;
+            margin-top: -10000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 200px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 80px;
+            margin-bottom: 1250px;
+            margin-top: -3000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 225px;
+            height: 200px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 75px;
+            margin-bottom: 1000px;
+            margin-top: -5585px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-top: 40px;
+            margin-left: 16px;
+            font-size: 1.3em;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .new-headline1 {
+            
+    margin-left: 19px;
+    font-size: 1.3em;
+    margin-bottom: 5000px;
+    color: rgb(247, 246, 246);
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        
+        .wide-section1 {
+            margin-left: 20px;
+            width: 300px;
+            height: 1130px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 390px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(39, 253, 10, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(39, 253, 10, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 20px;
+            width: 300px;
+            height: 880px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: -4710px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(133, 1, 122, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(133, 1, 122, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .sectionfont{
+            font-size: 0.8em;
+        }
+
+        }
+        @media (max-width: 386px){
+            body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #080101;
+        }
+
+        .navbar {
+            background-color: #070000;
+            color: #faf7f7;
+            padding: 10px;
+            text-align: left;
+            transition: box-shadow 0.3s ease-in-out;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: #faf6f6;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 13px;
+            font-weight: normal;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .class_interactive {
+            margin-top: 20px;
+             margin-left: 13px;
+             font-size: 1.3em;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .wide-section {
+            margin-left: 20px;
+            width: 300px;
+            height: 770px;
+            color: whitesmoke;
+            margin-top: 250px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(72, 141, 253, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section:hover {
+            box-shadow: 0px 2px 20px 10px rgba(72, 141, 253, 0.517);
+        }
+
+        .wide-section h2, .wide-section p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .outside-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 110px;
+            margin-bottom: 880px;
+            margin-top: -10000px;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .outside-image1 {
+            width: 200px;
+            height: 300px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 80px;
+            margin-bottom: 1250px;
+            margin-top: -3000px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+        .outside-image2 {
+            width: 225px;
+            height: 200px;
+            border-radius: 10px;
+            margin-right: 20px;
+            margin-left: 75px;
+            margin-bottom: 1000px;
+            margin-top: -5585px;
+            transition: opacity 0.8s ease-in-out , box-shadow 0.3s ease-in-out;
+        }
+
+        .new-headline {
+            margin-top: 40px;
+            margin-left: 16px;
+            font-size: 1.3em;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .new-headline1 {
+            
+    margin-left: 19px;
+    font-size: 1.3em;
+    margin-bottom: 5000px;
+    color: rgb(247, 246, 246);
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+    
+    display: block;
+        }
+        
+        .wide-section1 {
+            margin-left: 20px;
+            width: 300px;
+            height: 1130px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            margin-top: 390px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(39, 253, 10, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section1:hover {
+            box-shadow: 0px 2px 20px 10px rgba(39, 253, 10, 0.317);
+        }
+        .wide-section2 {
+            margin-left: 20px;
+            width: 300px;
+            height: 880px;
+            margin-bottom: 15px;
+            color: whitesmoke;
+            
+            margin-top: -4710px;
+            padding: 20px;
+            background-color: #05040480;
+            border-radius: 15px;
+            transition: opacity 0.8s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0px 2px 10px 10px rgba(133, 1, 122, 0.317);
+            backdrop-filter: blur(10px);
+        }
+
+        .wide-section2:hover {
+            box-shadow: 0px 2px 20px 10px rgba(133, 1, 122, 0.317);
+        }
+        .new {
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+
+
+        }
+        .sectionfont{
+            font-size: 0.8em;
+        }
+
+        }
+    </style>
+    <title>Animated Navbar</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage4()"><u>Home</u></a>
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage2()"><u>About Us</u></a>
+        <a href="#" class="creative-headline" onclick="redirectToWelcomePage3()"><u>Connect With Us</u></a>
+    </div>
+    <h1 class="class_interactive" style="color: white;"><span style="color: gray;">#</span> How It Started ?</h1>
+
+    <div class="wide-section  class_interactive creative-headline" >
+        <p class="sectionfont" style="font-weight: normal;">The Rubik's Cube, an iconic and challenging puzzle, was invented by Hungarian architect and professor <b><u>Ernő Rubik</u></b> in 1974. Originally named the <b>"<u>Magic Cube</u>"</b>, Rubik created this three-dimensional combination puzzle as a teaching tool to help his students understand spatial relationships.<br> <br>The cube consists of six faces, each made up of nine smaller squares of a single color. However, there have been modifications in this 3x3 model and there are now variants available like a <b><i>4x4, 5x5, 6x6, mirror cube, triangular cube, prism cube</i></b> and so on. Here's the list. The challenge arises from the fact that the cube can be twisted and turned along its axes, creating a multitude of potential combinations.
+        It wasn't until 1980 that the cube reached international acclaim after a toy company called Ideal Toy Corp licensed it and rebranded it as the "Rubik's Cube."<br><br> The cube's popularity skyrocketed, becoming a global sensation and an enduring symbol of intellectual prowess and problem-solving.
+        The Rubik's Cube has transcended its original purpose as a teaching tool,<br><br> evolving into a competitive pursuit with official competitions, records, and a dedicated community of enthusiasts. Speedcubing, the art of solving the cube as quickly as possible, has become a thrilling subculture, and numerous world records have been set and broken by skilled cubers.</p>
+    </div>
+    <img src="rubik.png" alt="Image Description" class="outside-image">
+
+    <h2 class="new-headline class_interactive"><span style="color: grey;">#</span> How Does It Work ?</h2>
+
+    <div class="wide-section1  class_interactive creative-headline" >
+        <p class="sectionfont" style="font-weight: normal;">Let me delve deeper into the intricate art of solving a Rubik's cube. The process is a fascinating journey that unfolds procedurally, demanding a keen understanding of its complex structure and a mastery of strategic maneuvers.
+        Unlike some puzzles with direct and straightforward solutions, a Rubik's cube defies such simplicity.<br><br> There is no singular legal method to crack this colorful enigma. However, the challenge it poses has been significantly demystified in the contemporary era.
+        In today's world, solving a Rubik's cube has evolved into a nuanced practice, with various methods and algorithms tailored for every conceivable condition the cube might present.<br><br> These algorithms serve as the building blocks of a solver's strategy, providing a roadmap through the twists and turns of the cube's six faces.
+        It's worth noting that solving a Rubik's cube has transitioned from an exclusive feat reserved for the puzzle elite to an accessible skill for enthusiasts of all levels.<br><br> The once-daunting puzzle now invites novices to partake in its solution, fostering a sense of accomplishment and satisfaction.
+        While the step-by-step guidance has simplified the process, transforming it into a more manageable task, achieving mastery is still a noteworthy accomplishment.<br><br> Solving a Rubik's cube has become a commonplace skill for many, but standing out as a true maestro requires finesse and dedication.
+        Impressing your audience with a complete Rubik's cube solution is not merely about the act itself but about the finesse and flair with which you execute it.<br><br> Only a select few, approximately 20 percent of individuals, can claim proficiency in this timeless puzzle, making your mastery a truly impressive and distinctive feat.
+        So, as you embark on your Rubik's cube-solving journey, revel in the complexity, embrace the challenge, and enjoy the satisfaction of becoming a true connoisseur of this iconic puzzle.</p>
+    </div>
+
+
+    <img src="cubesolver.jpg" alt="Image Description" class="outside-image1">
+    <div>
+        <h2 class="new-headline1"  style="color: white; display: block;"><span style="color: gray;"># </span>Cube Chronicles</h2>
+
+        <div class="wide-section2  class_interactive creative-headline" >
+
+            <p class="sectionfont" style="font-weight: normal;">The Rubik's Cube, beyond its intricate twists and turns, has woven a tapestry of entertaining events that add color and character to its storied history. In the realm of cubing competitions, the inaugural Rubik's Cube World Championship held in Budapest in 1981 marked a turning point, uniting cube enthusiasts from diverse corners of the world in a celebration of skill and camaraderie.<br><br>
+                 Venturing into the realm of innovation, the year 2013 witnessed the mesmerizing performance of CubeStormer 3, a LEGO Mindstorms robot fueled by a Samsung Galaxy S4, achieving the seemingly impossible feat of solving a Rubik's Cube in a mere 3.253 seconds, earning a well-deserved spot in the record books.<br><br>
+                  The speedcubing community, known for its penchant for creativity, has given rise to unconventional events that push the boundaries of cubing prowess. From blindfolded solving, where participants rely solely on memory and touch, to one-handed solving and the surprisingly agile feat of solving with feet, these events infuse an extra dose of excitement and amusement into the world of competitive cubing. <br><br>
+                  Beyond the competitive arena, the Rubik's Cube has inspired flash mobs, art installations, and even marriage proposals, demonstrating its enduring ability to captivate and unite people in unexpected and joyous ways. The history of the Rubik's Cube, dotted with these fun and eclectic moments, speaks to its universal appeal and the vibrant community that continues to breathe life into this iconic puzzle.
+
+                </p>
+        </div>
+        <img src="robot.jpg" alt="Image Description" class="outside-image2">
+
+
+</div>
+
+
+    <!-- Add content for the Fun Events in Rubik's Cube History -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const navbarItems = document.querySelectorAll(".creative-headline");
+            const interactiveElement = document.querySelector(".class_interactive");
+            const newHeadline = document.querySelector(".new-headline");
+            const newHeadline1 = document.querySelector(".new-headline1")
+
+            navbarItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = "1";
+                }, 500 * index); // Adjust the duration between appearances
+            });
+
+            setTimeout(() => {
+                interactiveElement.style.opacity = "1";
+            }, 500 * navbarItems.length); // Start after the navbar items animation completes
+
+            setTimeout(() => {
+                newHeadline.style.opacity = "1";
+            }, 500 * (navbarItems.length + 1)); // Start after the wide section animation completes
+            setTimeout(() => {
+                newHeadline1.style.opacity = "1";
+            }, 500 * (navbarItems.length + 1)); // Start after the wide section animation completes
+        });
+        function redirectToWelcomePage2() {
+      window.location.href = 'AboutUs.html';
+    }
+    function redirectToWelcomePage3() {
+      window.location.href = 'connect.html';
+    }
+    function redirectToWelcomePage4() {
+      window.location.href = 'cubetheory.html';
+    }
+    </script>
+</body>
+</html>

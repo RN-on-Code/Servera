@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <!-- Firebase JavaScript libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script>
+    // Firebase configuration
+    const firebaseConfig1 = {
+      apiKey: "AIzaSyCVO4Sjew6qNoZ9LyU7orPExVBHQ7pGJvw",
+      authDomain: "rnandarticles01.firebaseapp.com",
+      projectId: "rnandarticles01",
+      storageBucket: "rnandarticles01.appspot.com",
+      messagingSenderId: "50558174537",
+      appId: "1:50558174537:web:d95841f88718b9f9e00698"
+    };
+    firebase.initializeApp(firebaseConfig1);
+
+    // Function to sign up with email and password
+    function signUp() {
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed up successfully
+          const user = userCredential.user;
+          // You can redirect to a different page or perform other actions here
+          showMainPage(); // Show main page after sign up
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // Handle sign up errors here, e.g., display an error message
+        });
+    }
+
+    // Function to log in with email and password
+    function signIn() {
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Logged in successfully
+          const user = userCredential.user;
+          // You can redirect to a different page or perform other actions here
+          showMainPage(); // Show main page after login
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // Handle login errors here, e.g., display an error message
+        });
+    }
+
+    // Function to show the main page
+    function showMainPage() {
+      document.getElementById("login-signup").style.display = "none"; // Hide login/signup
+      document.getElementById("main-page").style.display = "block"; // Show main page
+    }
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        showMainPage(); // User is authenticated, show main page
+      } else {
+        // User is not authenticated, stay on login/signup
+      }
+    });
+  </script>
+</head>
+<body>
+  <!-- Login and Sign Up forms -->
+  <div id="login-signup">
+    <!-- Sign Up form -->
+    <div id="signup-container">
+      <h2>Sign Up</h2>
+      <input type="email" id="signup-email" placeholder="Email">
+      <input type="password" id="signup-password" placeholder="Password">
+      <button onclick="signUp()">Sign Up</button>
+    </div>
+
+    <!-- Login form -->
+    <div id="login-container">
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="signIn()">Log In</button>
+    </div>
+  </div>
+
+  <!-- Main page (initially hidden) -->
+  <div id="main-page" style="display: none;">
+    <!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title> कवी सम्मलेन.Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Include the Firebase JavaScript library -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script> <!-- Add Firebase Auth -->
+
+  <style>
+    #submitButton {
+  background-color: #3498db;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#submitButton:hover {
+  background-color: #2980b9;
+}
+     #textInput2 {
+      width: 80%; /* Adjust the width as needed */
+      height: 20px; /* Set the height to match textInput1 */
+    }
+    #text {
+      width: 20%;
+      height: 20px; /* Set the height to match textInput1 */
+    }
+    /* Remove list-style and add margin */
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    /* Add space between hashtags */
+    li {
+      margin-bottom: 5px;
+    }
+    body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .comments {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        .comment {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .comment-author {
+            color: #555;
+        }
+        .comment-text {
+            margin-top: 5px;
+        }
+        
+
+    
+
+  .header-text {
+    margin-right: 100px;
+  }
+
+  /* Adjust the position of the <figcaption> element */
+  .header-container figure {
+    position: relative;
+    bottom:100px;
+    margin-left:50px;
+  }
+  .header-container figcaption {
+    position: absolute;
+    top: 410px; /* Adjust this value to control the spacing */
+    left: 1px;
+  }
+  .header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .header-container img {
+    max-width: 100%;
+    height: auto;
+    max-height: 230px; /* Set the maximum height for the image */
+  }
+
+  .header-text {
+    
+    margin-left: 40px; /* Adjust the margin as needed */
+  }
+  
+
+  /* Use Flexbox for the alignment of image and caption */
+  .header-container figure {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  
+
+  .header-container figcaption {
+    position: relative;
+    top: 60px; /* Adjust this value to control the spacing */
+    margin-left: -45px; /* Adjust this value for horizontal spacing */
+    font-size: 12px;
+    transform: translateY(100%);
+  }
+  @media screen and (max-width: 768px) {
+  /* CSS rules for smaller screens */
+}
+
+  @media screen and (max-width: 600px) {
+      .header-container figcaption {
+        position: relative; /* Reset position for mobile */
+        bottom: auto;
+        left: auto;
+        transform: none;
+        text-align: center; /* Center the caption on mobile */
+        margin-top: 10px; /* Adjust this value to control spacing from the image */
+      }
+    }
+  
+
+  </style>
+</head>
+<body>
+  <div class="header-container">
+    <img src="Project Nxtth dot.jpg" alt="Nxtth Dot" width="320" height="210"><br>
+    <figcaption><b><i>NXTTH<br> DOT</i></figcaption></b></figcaption>
+    <div class="header-text">
+      <h1> कवी सम्मलेन.Online</h1>
+      <i>Poet's Assemble!<br>
+        Let's go live with our Masterpiece.<br>
+        <b>Motif:</b>(ELC) Engineering Love Equation.<br>
+      <b>Dialect:</b>Hindi.</i>
+       
+      <hr>
+    </div>
+    
+  </div>
+
+  <div class="signup-container">
+    <h2>Sign Up</h2>
+    <input type="email" id="signup-email" placeholder="Email">
+    <input type="password" id="signup-password" placeholder="Password">
+    <button onclick="signUp()">Sign Up</button>
+  </div>
+
+  <div class="login-container">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signIn()">Log In</button>
+  </div>
+  
+
+<div class="Thread1">
+    <h3>#संवाद १</h3>
+    <div class="Thread1">
+        <div class="Original Thread"> <p>नादानियत ही थी, किताबें हद से ज्यादा पढ़ने की।<br>
+          इंजीनियरिंग में जो दर्ज हुआ नाम, अफसोस भी न कर पाए,<br>
+          अख़िर उनसे मुलाक़ात भी तो यही होनी थी।<br>
+           r_n_
+
+          </p> 
+          
+                  <section>
+                    </u><b>प्रतिओत्तर:</b></h2>
+                    
+                    <textarea type="text" id="textInput2" placeholder="#संवाद क्र.
+अपनी शैली में...
+~उपनाम"style="height: 100px;"></textarea>
+                    
+<button onclick="saveData()" id="submitButton" style="background-color: black; color: white;margin-top: -1px;">प्रस्तुत करें</button>
+
+                    <ul id="dataList"></ul>
+                  </section>
+
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCVO4Sjew6qNoZ9LyU7orPExVBHQ7pGJvw",
+      authDomain: "rnandarticles01.firebaseapp.com",
+      projectId: "rnandarticles01",
+      storageBucket: "rnandarticles01.appspot.com",
+      messagingSenderId: "50558174537",
+      appId: "1:50558174537:web:d95841f88718b9f9e00698"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    function signUp() {
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed up successfully
+          const user = userCredential.user;
+          // You can redirect to a different page or perform other actions here
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // Handle sign up errors here, e.g., display an error message
+        });
+    }
+    function signIn() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // You can redirect to a different page or perform other actions here
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // Handle login errors here, e.g., display an error message
+        });
+    }
+
+    const database = firebase.database();
+    function saveData() {
+      var textInput2 = document.getElementById("textInput2").value;
+      var dataRef2 = database.ref("testData2");
+
+      
+
+      dataRef2.push().set({
+        text: textInput2
+      });
+
+      
+
+      alert("Data saved to Firebase Realtime Database.");
+    }
+
+    // Display stored data from Firebase Realtime Database
+    function displayData() {
+      var dataRef2 = database.ref("testData2");
+      var dataList = document.getElementById("dataList");
+
+     
+
+      dataRef2.on("child_added", function(snapshot) {
+        var data = snapshot.val();
+        var listItem = document.createElement("li");
+        listItem.textContent = data.text;
+        dataList.appendChild(listItem);
+      });
+
+    
+
+    }
+  
+
+    displayData();
+  </script>
+</body>
+</html> 
+    <!-- Your main page content goes here -->
+  </div>
+
+</body>
+</html>
+const firebaseConfig = {
+  apiKey: "AIzaSyCVO4Sjew6qNoZ9LyU7orPExVBHQ7pGJvw",
+  authDomain: "rnandarticles01.firebaseapp.com",
+  databaseURL: "https://rnandarticles01-default-rtdb.firebaseio.com",
+  projectId: "rnandarticles01",
+  storageBucket: "rnandarticles01.appspot.com",
+  messagingSenderId: "50558174537",
+  appId: "1:50558174537:web:3b23d76b2c62df97e00698",
+  measurementId: "G-4NYEM8K5C7"
+};

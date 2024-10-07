@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speech Recognition and Synthesis</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#output {
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<button id="start-btn">Start Listening</button>
+<div id="output"></div>
+<script>
+const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+recognition.lang = 'en-US';
+recognition.interimResults = false;
+
+const synth = window.speechSynthesis;
+
+const output = document.getElementById('output');
+const startBtn = document.getElementById('start-btn');
+
+startBtn.addEventListener('click', () => {
+  recognition.start();
+  output.textContent = 'Listening...';
+});
+
+recognition.addEventListener('result', (event) => {
+  const transcript = event.results[0][0].transcript;
+  output.textContent = transcript;
+  recordAndRespond(transcript);
+});
+
+function recordAndRespond(text) {
+  if (text.toLowerCase().includes('toxic')) {
+    respond("Hello user, greeting for the day, can i know your name please?");
+    setTimeout(() => {
+      recognition.start();
+      output.textContent = 'Listening...';
+    }, 5000);
+    console.log(text)
+    recognition.addEventListener('result', (event) => {
+  const transcript = event.results[0][0].transcript;
+  output.textContent = transcript;
+  console.log(output.textContent)
+    for(let i = 0; i <= 20; i++){ 
+    if (output.textContent.toLowerCase().includes('my')) {
+      let wordToRemove = "my"
+ output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('hey')) {
+      let wordToRemove = "hey"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('name')) {
+      let wordToRemove = "name"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('is')) {
+      let wordToRemove = "is"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('hello')) {
+      let wordToRemove = "hello"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('toxic')) {
+      let wordToRemove = "toxic"
+ output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('my')) {
+      let wordToRemove = "i'm"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('i am')) {
+      let wordToRemove = "i am"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('goodname')) {
+      let wordToRemove = "goodname"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('good')) {
+      let wordToRemove = "good"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('myself')) {
+      let wordToRemove = "myself"
+      output.textContent= ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('you')) {
+      let wordToRemove = "you"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('can')) {
+      let wordToRemove = "can"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('call')) {
+      let wordToRemove = "call"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('me')) {
+      let wordToRemove = "me"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('buddy')) {
+      let wordToRemove = "buddy"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('brother')) {
+      let wordToRemove = "brother"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('bro')) {
+      let wordToRemove = "bro"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('you')) {
+      let wordToRemove = "you"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('know')) {
+      let wordToRemove = "know"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    else if (output.textContent.toLowerCase().includes('actually')) {
+      let wordToRemove = "actually"
+      output.textContent = ` ${output.textContent.replace(new RegExp('\\b' + wordToRemove + '\\b', 'gi'), '')}`;
+    }
+    
+  }
+  respond(`Hello ${output.textContent} thats a very good name!`)
+  let lastLetter = output.textContent[output.textContent.length - 1];
+
+if (lastLetter === 'a' || lastLetter === 'i') {
+    respond('You seem to be a girl with a very good character,... yeah?')
+    setTimeout(() => {
+                recognition.start();
+                output.textContent1 = 'Listening...';
+            }, 5000);
+      
+    
+    console.log(text)
+    recognition.addEventListener('result', (event) => {
+  const transcript = event.results[0][0].transcript;
+  output.textContent1 = transcript;
+  console.log(output.textContent)
+  if(output.textContent1.toLowerCase().includes('yes' || 'yeah' || 'yup' || 'indeed' || 'yup' || 'please' || 'ok' || 'why not' || 'do')){
+    respond('Before we proceed i should tell you that while i go explaining and implementing the code, if you encounter any problem or didnt get the logic of any snippet used in, you can just say pause toxic and i will be hearing you out!')
+  }
+    });
+} else {
+    respond('You seem to be men with a very good character,... Yeah?...');
+    setTimeout(() => {
+                recognition.start();
+                output.textContent1 = 'Listening...';
+            }, 5000);
+      
+    
+    console.log(text)
+    recognition.addEventListener('result', (event) => {
+  const transcript = event.results[0][0].transcript;
+  output.textContent1 = transcript;
+  console.log(output.textContent)
+  if(output.textContent1.toLowerCase().includes('yes' || 'yeah' || 'yup' || 'indeed' || 'yup' || 'please' || 'ok' || 'why not' || 'do')){
+    respond('Before we proceed i should tell you that while i go explaining and implementing the code, if you encounter any problem or didnt get the logic of any snippet used in, you can just say pause toxic and i will be hearing you out!')
+  }
+    });
+}
+respond('...However, should we start with our session?')
+
+
+
+
+
+  
+  
+});
+
+  }
+}
+
+function respond(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  synth.speak(utterance);
+}
+</script>
+</body>
+</html>

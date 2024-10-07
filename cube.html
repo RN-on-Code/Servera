@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.1">
+    <link rel="shortcut icon" type="image/jpg" href="dali.ico" />
+    <link rel="stylesheet" href="style.css">
+    <title>3D Rubik Cube Model</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: radial-gradient(rgb(7 8 21), rgb(0 0 0));
+            background-repeat: no-repeat;
+            scroll-behavior: smooth;
+            background-attachment: fixed;
+            background-position-x: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            
+            
+            margin-top: 300px;
+            position: relative;
+        }
+
+        .box-area {
+            margin-left: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            width: 600px;
+            height: 600px;
+            transform: rotateX(45deg) rotateY(-45deg);
+            transition: transform 0.5s ease; /* Added transition for smooth animation */
+        }
+
+        .box {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border: 2px solid #262626;
+        }
+
+        .grid-container {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0px;
+            padding: 0px;
+        }
+
+        .grid-container>div {
+            border: 5px solid rgb(10, 10, 10);
+            border-radius: 5px;
+            text-align: center;
+            padding: 0;
+            font-size: 20px;
+        }
+
+        #box-back {
+            transform: translateX(-75px) translateY(-75px) translateZ(-75px);
+        }
+
+        #box-front {
+            transform: translateX(-75px) translateY(-75px) translateZ(75px);
+        }
+
+        #box-right {
+            transform: translateY(-75px) rotateY(90deg);
+        }
+
+        #box-left {
+            transform: translateY(-75px) translateX(-150px) rotateY(90deg);
+        }
+
+        #box-top {
+            transform: translateX(-75px) translateY(-150px) rotateX(90deg);
+        }
+
+        #box-bottom {
+            transform: translateX(-75px) rotateX(90deg);
+        }
+
+        .bg-back {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-right {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-left {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-top {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-bottom {
+            background: rgb(253, 252, 252);
+        }
+
+        .bg-front {
+            background: rgb(255, 255, 255);
+        }
+
+        .bg-green {
+            background: rgb(243, 245, 243);
+        }
+
+        .bg-blue {
+            background: rgb(248, 248, 249);
+        }
+
+        .bg-red {
+            background: rgb(240, 238, 238);
+        }
+
+        .bg-orange {
+            background: rgb(247, 246, 246);
+        }
+
+        .bg-yellow {
+            background: rgb(226, 226, 224);
+        }
+
+        /* Added style for buttons */
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .color-button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .red { background: red; }
+        .green { background: green; }
+        .blue { background: blue; }
+        .orange { background: orange; }
+        .yellow { background: yellow; }
+        .purple { background: rgb(250, 248, 250); }
+
+
+        .rotate-button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="box-area">
+            <div id="box-front" class="box">
+                <div class="grid-container bg-front">
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                </div>
+            </div>
+
+            <div id="box-left" class="box">
+                <div class="grid-container bg-left">
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                </div>
+            </div>
+
+            <div id="box-top" class="box">
+                <div class="grid-container bg-top">
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                </div>
+            </div>
+            <div id="box-back" class="box">
+                <div class="grid-container bg-back">
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                </div>
+            </div>
+            <div id="box-right" class="box">
+                <div class="grid-container bg-right">
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                </div>
+            </div>
+            <div id="box-bottom" class="box">
+                <div class="grid-container bg-bottom">
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                    <div class="grid-item" onclick="changeColor(this)"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Added button container -->
+        <div class="button-container">
+            <button class="rotate-button" onclick="rotateCube('up')">Rotate Up</button>
+            <button class="rotate-button" onclick="rotateCube('down')">Rotate Down</button>
+            <button class="rotate-button" onclick="rotateCube('left')">Rotate Left</button>
+            <button class="rotate-button" onclick="rotateCube('right')">Rotate Right</button>
+        </div>
+        <div class="button-container">
+            <button class="color-button red" onclick="setColor('red')">Red</button>
+            <button class="color-button green" onclick="setColor('green')">Green</button>
+            <button class="color-button blue" onclick="setColor('blue')">Blue</button>
+            <button class="color-button orange" onclick="setColor('orange')">Orange</button>
+            <button class="color-button yellow" onclick="setColor('yellow')">Yellow</button>
+            <button class="color-button white" onclick="setColor('white')">White</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let selectedColor = '';
+
+        function changeColor(element) {
+            if (selectedColor !== '') {
+                element.style.backgroundColor = selectedColor;
+            }
+        }
+
+        function setColor(color) {
+            selectedColor = color;
+        }
+
+    
+        function rotateCube(direction) {
+            const boxArea = document.querySelector('.box-area');
+            // Adjust the rotation values based on the desired effect
+            switch (direction) {
+                case 'up':
+                    boxArea.style.transform = 'rotateX(45deg) rotateY(-45deg) translateZ(75px) translateY(25px)';
+                    break;
+                case 'down':
+                    boxArea.style.transform = 'rotateX(-45deg) rotateY(45deg) translateZ(75px)';
+                    break;
+                case 'left':    
+                    boxArea.style.transform = 'rotateX(45deg) rotateY(45deg) translateY(600px)';
+                    break;
+                case 'right':
+                    boxArea.style.transform = 'rotateX(45deg) rotateY(-45deg) translateX(75px)';
+                    
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
