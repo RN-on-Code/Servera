@@ -24,7 +24,7 @@ if firebase_creds_base64 is None:
 firebase_creds_json = base64.b64decode(firebase_creds_base64).decode('utf-8')
 firebase_creds_dict = json.loads(firebase_creds_json)
 cred = credentials.Certificate(firebase_creds_dict)
-initialize_app(cred)
+
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://my-application-7a202-default-rtdb.firebaseio.com/'  # Replace with your Firebase Realtime Database URL
 })
