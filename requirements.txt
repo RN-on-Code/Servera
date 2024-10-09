@@ -66,7 +66,6 @@ googlevoice==3.1.0
 grpcio==1.66.2
 grpcio-status==1.66.2
 gTTS==2.5.0
-gunicorn
 h11==0.14.0
 httpcore==1.0.3
 httplib2==0.22.0
@@ -154,7 +153,6 @@ pyttsx3==2.90
 pytube==15.0.0
 pytweening==1.0.4
 pytz==2023.3.post1
-pywin32==305
 pywinpty==2.0.11
 PyYAML==6.0.1
 pyzmq==25.1.1
@@ -213,3 +211,4 @@ wrapt==1.16.0
 wsproto==1.2.0
 yarl==1.9.2
 youtube-search-python==1.6.6
+gunicorn
