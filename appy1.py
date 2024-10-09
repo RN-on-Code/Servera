@@ -1,6 +1,8 @@
 import subprocess 
 import re 
 import time 
+import base64
+import os
 import requests 
 from datetime import datetime
 import queue
@@ -12,8 +14,17 @@ import time
 from datetime import datetime, timedelta
 import firebase_admin
 import random
+import json
+from firebase_admin import credentials, initialize_app
 from firebase_admin import credentials, db
-cred = credentials.Certificate(r'C:/Users/Aaryan/vs.material/Servera/my-application-7a202-firebase-adminsdk-ttyry-60e09e525c.json')
+
+firebase_creds_base64 = os.getenv("FIREBASE_CREDENTIALS")
+if firebase_creds_base64 is None:
+    raise ValueError("FIREBASE_CREDENTIALS environment variable not set")
+firebase_creds_json = base64.b64decode(firebase_creds_base64).decode('utf-8')
+firebase_creds_dict = json.loads(firebase_creds_json)
+cred = credentials.Certificate(firebase_creds_dict)
+initialize_app(cred)
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://my-application-7a202-default-rtdb.firebaseio.com/'  # Replace with your Firebase Realtime Database URL
 })
