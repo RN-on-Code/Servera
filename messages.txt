@@ -1,0 +1,75 @@
+Row: 5666 address=+919970126641, date_sent=1727715246000, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 6103 address=+911234567890, date_sent=1727878094610, body=Byroad @handewadi @sasanenagar
+Row: 4410 address=+91+919970126641, date_sent=1727878648902, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 3901 address=+91+919970126641, date_sent=1727878840491, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 5364 address=+919970126641, date_sent=1727878877970, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 8612 address=+919970126641, date_sent=1727880557901, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 1020 address=+919970126641, date_sent=1727880962736, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 3124 address=+919970126641, date_sent=1727881592397, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 1301 address=+919970126641, date_sent=1727881710686, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 3188 address=+919970126641, date_sent=1727882097317, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 1124 address=+919970126641, date_sent=1727882104352, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 1975 address=+919970126641, date_sent=1727882110496, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 6752 address=+919970126641, date_sent=1727882375864, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 4644 address=+919970126641, date_sent=1727882383390, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 3970 address=+919970126641, date_sent=1727882388920, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 1969 address=+919970126641, date_sent=1727882394040, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 7502 address=+919970126641, date_sent=1727882394656, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 5610 address=+919970126641, date_sent=1727882398813, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 6251 address=+919970126641, date_sent=1727882398955, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 6190, address=+919970126641, date_sent=1727882738821, body=Byroad @Malwadi Bhairavnath Mitra Mandal Chowk @Anna Bhau Sathe Vasahat Bhakti Shakthi Nigdi
+Row: 6429, address=+919970126641, date_sent=1727882866740, body=Byroad @hinjewadi @yerawada
+Row: 5392, address=+919970126641, date_sent=1727890609692, body=Byroad @handewadi @yerawada
+Row: 9155, address=+919970126641, date_sent=1727890737907, body=Byroad @sasanenagar @yerawada
+Row: 1766, address=+919970126641, date_sent=1727891020800, body=Byroad @sasanenagar @yerawada
+Row: 5704 address=+919970126641, date_sent=1727890738000, body=Byroad @sasanenagar @yerawada
+Row: 9874, address=+919970126641, date_sent=1727893439088, body=Byroad @sasanenagar @yerawada
+Row: 5574, address=+919970126641, date_sent=1727893704663, body=Byroad @sasanenagar @yerawada
+Row: 5411, address=+919970126641, date_sent=1727893844683, body=Byroad @sasanenagar @yerawada
+Row: 4171, address=+919970126641, date_sent=1727894611271, body=Byroad @sasanenagar @yerawada
+Row: 1622, address=+919970126641, date_sent=1727894902120, body=Byroad @sasanenagar @yerawada
+Row: 6211, address=+919970126641, date_sent=1727895056186, body=Byroad @sasanenagar @yerawada
+Row: 1189, address=+919970126641, date_sent=1727895485673, body=Byroad @sasanenagar @yerawada
+Row: 6297, address=+919970126641, date_sent=1727896419783, body=Byroad @sasanenagar @yerawada
+Row: 1251, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 1047, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 2219, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 6124, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 8944, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 3240, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 8749, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 2331, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 9425, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 3249, address=+919970126641, date_sent=1727895468381, body=Byroad @sasanenagar @yerawada
+Row: 5989, address=+918888605312, date_sent=1727967132391, body=Byroad @handewadi @chinchwad
+#8605040803
+Row: 2072, address=+918888605312, date_sent=1727967132391, body=Byroad @handewadi @chinchwad
+#8605040803
+Row: 1022, address=+918888605312, date_sent=1727967132391, body=Byroad @handewadi @chinchwad
+#8605040803
+Row: 6831, address=+918888605312, date_sent=1727967132391, body=Byroad @handewadi @chinchwad
+#8605040803
+Row: 2144, address=+918888605312, date_sent=1727967132391, body=Byroad @handewadi @chinchwad
+#8605040803
+Row: 4095, address=+918888605312, date_sent=1727967132391, body=Byroad @handewadi @chinchwad
+#8605040803
+Row: 3326, address=+918888605312, date_sent=1727967132391, body=Byroad @handewadi @chinchwad
+#8605040803
+Row: 6530, address=+918888605312, date_sent=1727969049654, body=Byroad @handewadi @chinchwad
+
+Row: 3395, address=+918888605312, date_sent=1727969049654, body=Byroad @handewadi @chinchwad
+
+Row: 5527, address=+918888605312, date_sent=1727969049654, body=Byroad @handewadi @chinchwad
+
+Row: 9561, address=+918888605312, date_sent=1727969049654, body=Byroad @handewadi @chinchwad
+
+Row: 8219, address=+918888605312, date_sent=1727969049654, body=Byroad @handewadi @chinchwad
+
+Row: 7363, address=+918888605312, date_sent=1727969049654, body=Byroad @handewadi @chinchwad
+
+Row: 6752, address=+917410504444, date_sent=1727976796974, body=Byroad @hinjawadi  @malwadi
+Row: 3483, address=+917410504444, date_sent=1727976796974, body=Byroad @hinjawadi  @malwadi
+Row: 2846, address=+917410504444, date_sent=1727976796974, body=Byroad @hinjawadi  @malwadi
+Row: 3528, address=+919822238387, date_sent=1727977133406, body=Byroad @ramtekdi @sasanenagar
+Row: 2206, address=+919822238387, date_sent=1727977133406, body=Byroad @ramtekdi @sasanenagar
+Row: 2141, address=+919822238387, date_sent=1727977133406, body=Byroad @ramtekdi @sasanenagar
