@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 import firebase_admin
 import random
 from firebase_admin import credentials, db
-cred = credentials.Certificate(r'C:/Users/Aaryan/vs.material/my-application-7a202-firebase-adminsdk-ttyry-60e09e525c.json')
+cred = credentials.Certificate(r'C:/Users/Aaryan/vs.material/Servera/my-application-7a202-firebase-adminsdk-ttyry-60e09e525c.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://my-application-7a202-default-rtdb.firebaseio.com/'  # Replace with your Firebase Realtime Database URL
 })
@@ -352,7 +352,7 @@ def ask_to_proceed(new_byroad, byroad_phone_no, total_fare_price, ttc, from_loca
             print(new_byroad)
             if byroad_message and byroad_message != new_byroad:
                 print('executed')
-                program_path = "C:/Users/Aaryan/vs.material/appy1.py"
+                program_path = "C:/Users/Aaryan/vs.material/Servera/appy1.py"
 
                 process = subprocess.Popen(['python', program_path])
             response_phone_number = extract_response_phone_number(response_message)
@@ -404,7 +404,7 @@ def ask_to_proceed2(onroad_phone_nos, from_location, to_location, total_fare_pri
         byroad_message1, onroad_message, response_message1, _, _= read_recent_sms()
         read_recent_sms()
         if byroad_message1 and byroad_message1 != new_byroad:
-                                        program_path = "C:/Users/Aaryan/vs.material/appy1.py"
+                                        program_path = "C:/Users/Aaryan/vs.material/Servera/appy1.py"
 
                                         process = subprocess.Popen(['python', program_path])
         condition = False
@@ -444,7 +444,7 @@ def ask_to_proceed2(onroad_phone_nos, from_location, to_location, total_fare_pri
                                     cancellation_response_phone_no = extract_response_phone_number(cancellation_response)
                                     read_recent_sms()
                                     if byroad_recent and byroad_recent != new_byroad:
-                                        program_path = "C:/Users/Aaryan/vs.material/appy1.py"
+                                        program_path = "C:/Users/Aaryan/vs.material/Servera/appy1.py"
 
                                         process = subprocess.Popen(['python', program_path])
                                     
@@ -492,7 +492,7 @@ def process_byroad(api_key, price_per_km):
         
         if new_byroad and new_byroad != most_recent_byroad:
             try:
-                with open('C:/Users/Aaryan/vs.material/messages.txt','r') as file:
+                with open('C:/Users/Aaryan/vs.material/Servera/messages.txt','r') as file:
                     lines = file.readlines()
                     found = True
 
@@ -500,7 +500,7 @@ def process_byroad(api_key, price_per_km):
                         if new_byroad in line:
                             found = False
                     if found == True:
-                        with open('C:/Users/Aaryan/vs.material/messages.txt', 'a') as file:
+                        with open('C:/Users/Aaryan/vs.material/Servera/messages.txt', 'a') as file:
                          file.write(new_byroad+"\n")
                         print(new_byroad)
                         phone_no = extract_phone_number(new_byroad)
